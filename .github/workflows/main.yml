@@ -9,14 +9,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        projectPath:
-          - ./
         targetPlatform:
           - Android
     steps:
-      - uses: game-ci/unity-builder@v2
-        with:
-          versioning: Semantic
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
