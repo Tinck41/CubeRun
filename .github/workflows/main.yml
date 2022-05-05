@@ -10,6 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows64
           - Android
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +24,8 @@ jobs:
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - uses: game-ci/unity-builder@v2
+        with:
+          versioning: Semantic
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
