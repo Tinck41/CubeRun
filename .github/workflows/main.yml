@@ -26,7 +26,6 @@ jobs:
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          githubToken: ${{ secrets.TOKEN }}
         with:
           versioning: Semantic
           targetPlatform: ${{ matrix.targetPlatform }}
