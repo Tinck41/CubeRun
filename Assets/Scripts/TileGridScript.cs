@@ -10,7 +10,7 @@ public class TileGridScript : MonoBehaviour
 
     private GameObject[,] grid;
 
-    void Start()
+    void Awake()
     {
         grid = new GameObject[gridSize.x, gridSize.y];
 
@@ -30,9 +30,9 @@ public class TileGridScript : MonoBehaviour
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                for (int x = 0; x < gridSize.x; x++)
+                for (int x = 0; x < gridSize.x - Mathf.Min(1, y % 2); x++)
                 {
-                    grid[x, y] = Instantiate(tile, new Vector3(x, 0, y), Quaternion.identity);
+                    grid[x, y] = Instantiate(tile, new Vector3(x * Mathf.Sqrt(2) + (y % 2 == 0 ? 0 : Mathf.Sqrt(2) / 2), 0, y * (Mathf.Sqrt(2) / 2)), transform.rotation);
                     grid[x, y].transform.parent = transform;
                     grid[x, y].GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
                 }
@@ -42,5 +42,10 @@ public class TileGridScript : MonoBehaviour
         {
             Debug.LogError("No tile prefab was set");
         }
+    }
+
+    public void AlignGrid()
+    {
+        transform.position = new Vector3(-gridSize.x / 2 * Mathf.Sqrt(2), transform.position.y, transform.position.z);
     }
 }

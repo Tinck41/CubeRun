@@ -7,18 +7,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed;
 
-    private Vector3 forwardRotationPoint;
-    private Vector3 rightRotationPoint;
     private Vector3 _rotationPoint;
 
     private Vector2 _currentDirection;
 
     void Start()
     {
-        var bounds = GetComponent<MeshRenderer>().bounds;
-        forwardRotationPoint = new Vector3(0, -bounds.extents.y, bounds.extents.z);
-        rightRotationPoint = new Vector3(bounds.extents.x, -bounds.extents.y, 0);
-
         _currentDirection = Vector2.zero;
 
         SwipeDetection.TapEvent += OnTap;
@@ -31,12 +25,12 @@ public class Player : MonoBehaviour
         if (_currentDirection == Vector2.right)
         {
             _currentDirection = Vector2.left;
-            _rotationPoint = forwardRotationPoint;
+            _rotationPoint = Quaternion.Euler(0, 45, 0) * Vector3.left;
         }
         else
         {
             _currentDirection = Vector2.right;
-            _rotationPoint = rightRotationPoint;
+            _rotationPoint = Quaternion.Euler(0, 45, 0) * Vector3.forward;
         }
     }
 
@@ -47,19 +41,17 @@ public class Player : MonoBehaviour
 
     private IEnumerator Roll()
     {
-        Vector3 point = transform.position + _rotationPoint;
-        Vector3 axis = Vector3.Cross(Vector3.up, _rotationPoint).normalized;
-        float angle = 90;
-        float a = 0;
+        float remainingAngle = 90;
+        Vector3 rotationCenter = transform.position + _rotationPoint / 2 + Vector3.down / 2;
+        Vector3 rotationAxis = Vector3.Cross(Vector3.up, _rotationPoint);
 
-        while (angle > 0)
+        while (remainingAngle > 0)
         {
-            a = Time.deltaTime * speed;
-            transform.RotateAround(point, axis, a);
-            angle -= a;
+            float rotationAngle = Mathf.Min(Time.deltaTime * speed, remainingAngle);
+            transform.RotateAround(rotationCenter, rotationAxis, rotationAngle);
+            remainingAngle -= rotationAngle;
             yield return null;
         }
-        transform.RotateAround(point, axis, angle);
 
         yield return StartCoroutine(Roll());
     }
