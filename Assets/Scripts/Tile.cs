@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        //this.GetComponent<Renderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
     }
 
     // Update is called once per frame

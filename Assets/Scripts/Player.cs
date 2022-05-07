@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private Vector3 _rotationPoint;
 
     private Vector2 _currentDirection;
+    [SerializeField] private Vector3 debug;
 
     void Start()
     {
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     private IEnumerator Roll()
@@ -51,6 +51,14 @@ public class Player : MonoBehaviour
             transform.RotateAround(rotationCenter, rotationAxis, rotationAngle);
             remainingAngle -= rotationAngle;
             yield return null;
+        }
+
+        int layerMask = 1 << 6;
+
+        RaycastHit hit;
+        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 1, layerMask))
+        {
+            yield break;
         }
 
         yield return StartCoroutine(Roll());
