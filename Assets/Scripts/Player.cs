@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class Player : MonoBehaviour
     private Vector3 _rotationPoint;
 
     private Vector2 _currentDirection;
+
+    public bool isDead { get; private set; }
 
     void Start()
     {
@@ -55,6 +56,10 @@ public class Player : MonoBehaviour
 
         if (CheckAfterRoll())
         {
+            GetComponent<BoxCollider>().isTrigger = true;
+            var vcam = FindObjectOfType<CinemachineVirtualCamera>();
+            isDead = true;
+            vcam.Follow = null;
             yield break;
         }
 
