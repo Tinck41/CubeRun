@@ -1,61 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject Chunk;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject _tile;
 
-    [SerializeField] private int PoolRange;
-    [SerializeField] private int ChunkLength;
+    private GameObject[,] _grid;
 
-    [SerializeField] private float CheckOffSet;
-
-    private Queue<GameObject> _pool;
-
-    void Start()
-    {
-        _pool = new Queue<GameObject>(PoolRange);
-
-        for (int i = 0; i < PoolRange; i++)
-        {
-            var newChunk = GenerateChunk();
-            if (newChunk)
-            {
-                _pool.Enqueue(newChunk);
-            }
-        }
-    }
+    private Vector2Int  _size;
 
     void Update()
     {
-        if (Player.transform.position.z > _pool.Peek().transform.position.z + ChunkLength + CheckOffSet)
-        {
-            Destroy(_pool.Dequeue());
+        
+    }
 
-            var newChunk = GenerateChunk();
-            if (newChunk)
+    public void GenerateGrid(Vector2Int size)
+    {
+        _size = size;
+
+        if (_tile)
+        {
+            _grid = new GameObject[_size.x, _size.y];
+
+            for (int y = 0; y < size.y; y++)
             {
-                _pool.Enqueue(newChunk);
+                var tileWidth = _tile.transform.localScale.x * Mathf.Sqrt(2);
+                var offSet = (y % 2 == 0 ? 0 : tileWidth / 2);
+                for (int x = 0; x < size.x - Mathf.Min(1, y % 2); x++)
+                {
+                    if (y > 0 && y < _size.y - 1 && x > 0 && x <  _size.x - 1)
+                    {
+                        if (Random.Range(0f, 1f) < 0.98f)
+                        {
+                            _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
+                            _grid[x, y].transform.parent = transform;
+                        }
+                    }
+                    else
+                    {
+                        _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
+                        _grid[x, y].transform.parent = transform;
+                    }
+                }
             }
+        }
+        else
+        {
+            Debug.LogError("No tile prefab was set");
+            throw new UnassignedReferenceException();
         }
     }
 
-    GameObject GenerateChunk()
+    public void AlignGrid()
     {
-        if (Chunk)
-        {
-            var chunkPosition = _pool.FirstOrDefault() == null ? Vector3.zero : _pool.Last().transform.position + new Vector3(0, 0, ChunkLength / 2 * Mathf.Sqrt(2));
-            var newChunk = Instantiate(Chunk, Vector3.zero, Chunk.GetComponent<Transform>().rotation);
-            newChunk.transform.position = chunkPosition;
-            newChunk.GetComponent<TileGridScript>().AlignGrid();
-            newChunk.transform.SetParent(transform);
-            return newChunk.gameObject;
-        }
-
-        Debug.LogError("No chunk prefab was set");
-        return null;
+        transform.position = new Vector3(-_size.x / 2 * Mathf.Sqrt(2), transform.position.y, transform.position.z);
     }
 }

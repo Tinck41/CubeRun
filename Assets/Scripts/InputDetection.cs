@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeDetection : MonoBehaviour
+public class InputDetection : MonoBehaviour
 {
     public static event OnTapInput TapEvent;
     public delegate void OnTapInput();

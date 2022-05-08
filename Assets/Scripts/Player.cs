@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float _speed;
 
     private Vector3 _rotationPoint;
 
     private Vector2 _currentDirection;
-    [SerializeField] private Vector3 debug;
 
     void Start()
     {
         _currentDirection = Vector2.zero;
 
-        SwipeDetection.TapEvent += OnTap;
+        InputDetection.TapEvent += OnTap;
 
         StartCoroutine(Roll());
     }
@@ -47,20 +46,30 @@ public class Player : MonoBehaviour
 
         while (remainingAngle > 0)
         {
-            float rotationAngle = Mathf.Min(Time.deltaTime * speed, remainingAngle);
+            float rotationAngle = Mathf.Min(Time.deltaTime * _speed, remainingAngle);
             transform.RotateAround(rotationCenter, rotationAxis, rotationAngle);
             remainingAngle -= rotationAngle;
             yield return null;
         }
 
-        int layerMask = 1 << 6;
 
-        RaycastHit hit;
-        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 1, layerMask))
+        if (CheckAfterRoll())
         {
             yield break;
         }
 
         yield return StartCoroutine(Roll());
+    }
+
+    private bool CheckAfterRoll()
+    {
+        int layerMask = 1 << 6;
+        RaycastHit hit;
+        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 1, layerMask))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
