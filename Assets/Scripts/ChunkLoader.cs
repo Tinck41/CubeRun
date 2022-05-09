@@ -11,10 +11,11 @@ public class ChunkLoader : MonoBehaviour
     [SerializeField] private Vector2Int _chunkSize;
 
     [SerializeField] private int _poolRange;
+    [SerializeField] private int _pathNum;
 
     [SerializeField] private float _checkOffSet;
 
-    [SerializeField] private int _seed;
+    //[SerializeField] private int _seed;
     [Range(0, 1)]
     [SerializeField] private float _obstaclePercent;
 
@@ -66,7 +67,7 @@ public class ChunkLoader : MonoBehaviour
         var newChunk = Instantiate(_chunkPrefab, Vector3.zero, _chunkPrefab.GetComponent<Transform>().rotation);
         if (newChunk)
         {
-            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _seed, _obstaclePercent);
+            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _pathNum, _obstaclePercent);
             newChunk.transform.position = chunkPosition;
             newChunk.GetComponent<ChunkGenerator>().AlignGrid();
             newChunk.transform.SetParent(transform);

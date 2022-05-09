@@ -1,17 +1,18 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _tile;
-    [SerializeField] private GameObject _obstacle;
+    [SerializeField] private GameObject[] _obstacles;
 
     private GameObject[,] _grid;
 
     private Vector2Int  _size;
 
     private List<Coord> _allTileCoords;
+    private List<Coord> _pathTileCoords;
     private Queue<Coord> _shuffledTileCoords;
 
     private Coord _playerSpawnPosition;
@@ -21,10 +22,11 @@ public class ChunkGenerator : MonoBehaviour
         
     }
 
-    public void GenerateGrid(Vector2Int size, int seed, float obstaclePercent)
+    public void GenerateGrid(Vector2Int size, int pathNum, float obstaclePercent)
     {
         _size = size;
         _allTileCoords = new List<Coord>();
+        _pathTileCoords = new List<Coord>();
         _playerSpawnPosition = new Coord((int)(size.x / 2), 0);
 
         var holderName = "GridHolder";
@@ -40,11 +42,11 @@ public class ChunkGenerator : MonoBehaviour
         {
             _grid = new GameObject[_size.x, _size.y];
 
-            for (int y = 0; y < size.y; y++)
+            for (int y = 0; y < _size.y; y++)
             {
                 var tileWidth = transform.rotation.y > 0 ? _tile.transform.localScale.x * Mathf.Sqrt(2) : 1;
                 var offSet = transform.rotation.y > 0 ? (y % 2 == 0 ? 0 : tileWidth / 2) : 0;
-                for (int x = 0; x < size.x - Mathf.Min(1, y % 2); x++)
+                for (int x = 0; x < _size.x - Mathf.Min(1, y % 2); x++)
                 {
                     _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
                     _grid[x, y].transform.SetParent(gridHolder.transform);
@@ -52,23 +54,32 @@ public class ChunkGenerator : MonoBehaviour
                 }
             }
 
+            for (int i = 0; i < pathNum; i++)
+            {
+                CreatePath();
+            }
+
             _shuffledTileCoords = new Queue<Coord>(Utility.ShuffleArray(_allTileCoords.ToArray()));
 
-            bool[,] obstacleMap = new bool[_size.x, _size.y];
-
-            var obstacleCount = (int)(_size.x * _size.y * obstaclePercent);
-            var currentObstacleCount = 0;
+            var obstacleCount = (int)(_shuffledTileCoords.Count * obstaclePercent);
+            int counter = 0;
             for (int i = 0; i < obstacleCount; i++)
             {
                 var randomCoord = GetRandomCoord();
-                obstacleMap[randomCoord.x, randomCoord.y] = true;
-                currentObstacleCount++;
+                if (_pathTileCoords.Contains(randomCoord))
+                {
+                    counter++;
+                    continue;
+                }
 
-                if (randomCoord.y > 2 && MapIsFullyAccessible(obstacleMap, currentObstacleCount)) {
+                if (randomCoord.y > 2)
+                {
                     var obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y);
-                    if (Random.Range(0f, 1f) > 0.5f)
+                    var random = new System.Random(Guid.NewGuid().GetHashCode());
+
+                    if (random.NextDouble() > 0.5f)
                     {
-                        var obstacle = Instantiate(_obstacle, obstaclePosition + Vector3.up * 1, transform.rotation);
+                        var obstacle = Instantiate(_obstacles[random.Next(0, _obstacles.Length)], obstaclePosition + Vector3.up * 1, transform.rotation);
                         obstacle.transform.SetParent(gridHolder.transform);
                     }
                     else
@@ -80,11 +91,6 @@ public class ChunkGenerator : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    obstacleMap[randomCoord.x, randomCoord.y] = false;
-                    currentObstacleCount--;
-                }
             }
         }
         else
@@ -94,46 +100,38 @@ public class ChunkGenerator : MonoBehaviour
         }
     }
 
-    bool MapIsFullyAccessible(bool[,] obstacleMap, int currentObstacleCount)
+    void CreatePath()
     {
-        bool[,] mapFlags = new bool[obstacleMap.GetLength(0), obstacleMap.GetLength(1)];
-        Queue<Coord> queue = new Queue<Coord>();
-        queue.Enqueue(_playerSpawnPosition);
-        mapFlags[_playerSpawnPosition.x, _playerSpawnPosition.y] = true;
-
-        var accessibleTielCount = 1;
-
-        while (queue.Count > 0)
+        var currentPostion = _playerSpawnPosition;
+        for (int y = currentPostion.y; y < _size.y; y++)
         {
-            Coord tile = queue.Dequeue();
+            _pathTileCoords.Add(currentPostion);
 
-            for (int x = -1; x <= 1; x++)
+            var tileWidth = _tile.transform.localScale.x * Mathf.Sqrt(2);
+            var offset = y % 2 == 0 ? tileWidth / 2 : 0;
+            var shift = y % 2 == 0 ? 0 : 1;
+            Coord nexPosition;
+            if (shift == 0 && (currentPostion.x == 0 || currentPostion.x == _size.x - 1))
             {
-                for (int y = -1; y <= 1; y++)
-                {
-                    var neighbourX = tile.x + x;
-                    var neighbourY = tile.y + y;
-
-                    if (x == 0 || y == 0)
-                    {
-                        if (neighbourX >= 0 && neighbourX < obstacleMap.GetLength(0) &&
-                            neighbourY >= 0 && neighbourY < obstacleMap.GetLength(1))
-                        {
-                            if (!mapFlags[neighbourX, neighbourY] && !obstacleMap[neighbourX, neighbourY])
-                            {
-                                mapFlags[neighbourX, neighbourY] = true;
-                                queue.Enqueue(new Coord(neighbourX, neighbourY));
-                                accessibleTielCount++;
-                            }
-                        }
-                    }
-                }
+                nexPosition = new Coord(currentPostion.x == 0 ? 0 : _size.x - 2 , currentPostion.y + 1);
             }
+            else
+            {
+                var random = new System.Random(Guid.NewGuid().GetHashCode());
+                var direction = 0;
+                if (random.NextDouble() > 0.5f)
+                {
+                    direction = 1;
+                }
+                nexPosition = new Coord(currentPostion.x - direction + shift, currentPostion.y + 1);
+            }
+
+            currentPostion = nexPosition;
+
+            //var instance = Instantiate(_obstacles[0], new Vector3(currentPostion.x * tileWidth + offset, 1, currentPostion.y * (tileWidth / 2)), transform.rotation);
+            //instance.GetComponent<Renderer>().material.color = new Color(255f, 255f, 0f, 1f);
+            //instance.transform.SetParent(transform.Find("GridHolder").transform);
         }
-
-        var targetAccessibleTileCount = _size.x * _size.y - currentObstacleCount;
-
-        return targetAccessibleTileCount == accessibleTielCount;
     }
 
     public Vector3 CoordToPosition(int x, int y)
