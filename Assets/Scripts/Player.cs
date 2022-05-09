@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     public UnityAction PlayerDead;
 
+    public int score { get; private set; }
+
     void Start()
     {
         _currentDirection = Vector2.zero;
@@ -61,9 +63,11 @@ public class Player : MonoBehaviour
         if (CheckAfterRoll())
         {
             GetComponent<BoxCollider>().isTrigger = true;
-            SetDead(true);
+            SetDead(true, AnalyticsHelper.DeadReason.Fall_off);
             yield break;
         }
+
+        score++;
 
         yield return StartCoroutine(Roll());
     }
@@ -81,7 +85,7 @@ public class Player : MonoBehaviour
         return false;
     }
 
-    public void SetDead(bool value)
+    public void SetDead(bool value, AnalyticsHelper.DeadReason reason)
     {
         isDead = value;
 
@@ -92,5 +96,7 @@ public class Player : MonoBehaviour
 
         PlayerDead?.Invoke();
         Debug.Log("Player dead");
+
+        AnalyticsHelper.OnPlayerDead(score, reason);
     }
 }
