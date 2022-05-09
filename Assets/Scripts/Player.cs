@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 
 public class Player : MonoBehaviour
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     private Vector2 _currentDirection;
 
     public bool isDead { get; private set; }
+
+    public UnityAction PlayerDead;
 
     void Start()
     {
@@ -58,9 +61,7 @@ public class Player : MonoBehaviour
         if (CheckAfterRoll())
         {
             GetComponent<BoxCollider>().isTrigger = true;
-            var vcam = FindObjectOfType<CinemachineVirtualCamera>();
-            isDead = true;
-            vcam.Follow = null;
+            SetDead(true);
             yield break;
         }
 
@@ -78,5 +79,18 @@ public class Player : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetDead(bool value)
+    {
+        isDead = value;
+
+        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = null;
+
+        StopAllCoroutines();
+
+        PlayerDead?.Invoke();
+        Debug.Log("Player dead");
     }
 }

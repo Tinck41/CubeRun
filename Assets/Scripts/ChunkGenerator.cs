@@ -40,31 +40,19 @@ public class ChunkGenerator : MonoBehaviour
         {
             _grid = new GameObject[_size.x, _size.y];
 
-            // First layer
             for (int y = 0; y < size.y; y++)
             {
                 var tileWidth = transform.rotation.y > 0 ? _tile.transform.localScale.x * Mathf.Sqrt(2) : 1;
                 var offSet = transform.rotation.y > 0 ? (y % 2 == 0 ? 0 : tileWidth / 2) : 0;
                 for (int x = 0; x < size.x - Mathf.Min(1, y % 2); x++)
                 {
-                    if (y > 0 && y < _size.y - 1 && x > 0 && x < _size.x - 1)
-                    {
-                        if (Random.Range(0f, 1f) < 0.9f)
-                        {
-                            _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
-                            _grid[x, y].transform.SetParent(gridHolder.transform);
-                        }
-                    }
-                    else
-                    {
-                        _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
-                        _grid[x, y].transform.SetParent(gridHolder.transform);
-                    }
+                    _grid[x, y] = Instantiate(_tile, new Vector3(x * tileWidth + offSet, 0, y * (tileWidth / 2)), transform.rotation);
+                    _grid[x, y].transform.SetParent(gridHolder.transform);
                     _allTileCoords.Add(new Coord(x, y));
                 }
             }
 
-            _shuffledTileCoords = new Queue<Coord>(Utility.ShuffleArray(_allTileCoords.ToArray(), seed));
+            _shuffledTileCoords = new Queue<Coord>(Utility.ShuffleArray(_allTileCoords.ToArray()));
 
             bool[,] obstacleMap = new bool[_size.x, _size.y];
 
@@ -78,9 +66,19 @@ public class ChunkGenerator : MonoBehaviour
 
                 if (randomCoord.y > 2 && MapIsFullyAccessible(obstacleMap, currentObstacleCount)) {
                     var obstaclePosition = CoordToPosition(randomCoord.x, randomCoord.y);
-                    var obstacle = Instantiate(_obstacle, obstaclePosition + Vector3.up * 1, transform.rotation);
-
-                    obstacle.transform.SetParent(gridHolder.transform);
+                    if (Random.Range(0f, 1f) > 0.5f)
+                    {
+                        var obstacle = Instantiate(_obstacle, obstaclePosition + Vector3.up * 1, transform.rotation);
+                        obstacle.transform.SetParent(gridHolder.transform);
+                    }
+                    else
+                    {
+                        if ((randomCoord.x != 0 && randomCoord.x != _size.x - 1) && randomCoord.y != 0)
+                        {
+                            DestroyImmediate(_grid[randomCoord.x, randomCoord.y]);
+                            _grid[randomCoord.x, randomCoord.y] = null;
+                        }
+                    }
                 }
                 else
                 {

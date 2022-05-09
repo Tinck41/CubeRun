@@ -1,24 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player _player;
 
-    // Start is called before the first frame update
+    [SerializeField] private GameOverScreen _gameOverScreen;
+
     void Start()
+    {
+        _player.PlayerDead += GameOver;
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void GameOver()
     {
-        if (_player.isDead)
-        {
-            Debug.Log("Game end");
-            //show lose screen
-        }
+        _gameOverScreen.Setup();
+        Debug.Log("Game End");
     }
 }

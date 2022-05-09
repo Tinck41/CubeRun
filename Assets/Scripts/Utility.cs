@@ -1,9 +1,9 @@
 
 public static class Utility
 {
-    public static T[] ShuffleArray<T>(T[] array, int seed)
+    public static T[] ShuffleArray<T>(T[] array)
     {
-        System.Random prng = new System.Random(seed);
+        System.Random prng = new System.Random();
 
         for (int i = 0; i < array.Length; i++)
         {
