@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tile: {fileID: 3683460457115871221, guid: 2280de3678913e2489738f0538ab83b4, type: 3}
+  _obstacle: {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425,
+    type: 3}
 --- !u!65 &1152762490657576077
 BoxCollider:
   m_ObjectHideFlags: 0

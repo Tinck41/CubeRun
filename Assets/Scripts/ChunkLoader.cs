@@ -14,9 +14,19 @@ public class ChunkLoader : MonoBehaviour
 
     [SerializeField] private float _checkOffSet;
 
+    [SerializeField] private int _seed;
+    [Range(0, 1)]
+    [SerializeField] private float _obstaclePercent;
+
     private Queue<GameObject> _pool;
 
+
     void Start()
+    {
+        Reload();
+    }
+
+    private void Load()
     {
         _pool = new Queue<GameObject>(_poolRange);
 
@@ -56,7 +66,7 @@ public class ChunkLoader : MonoBehaviour
         var newChunk = Instantiate(_chunkPrefab, Vector3.zero, _chunkPrefab.GetComponent<Transform>().rotation);
         if (newChunk)
         {
-            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize);
+            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _seed, _obstaclePercent);
             newChunk.transform.position = chunkPosition;
             newChunk.GetComponent<ChunkGenerator>().AlignGrid();
             newChunk.transform.SetParent(transform);
@@ -67,5 +77,21 @@ public class ChunkLoader : MonoBehaviour
             Debug.LogError("No chunk prefab was created");
             throw new MissingReferenceException();
         }
+    }
+
+    public void Reload()
+    {
+        if (_pool != null)
+        {
+            _pool.Clear();
+        }
+
+        var childCount = transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            DestroyImmediate(transform.GetChild(0).gameObject);
+        }
+
+        Load();
     }
 }

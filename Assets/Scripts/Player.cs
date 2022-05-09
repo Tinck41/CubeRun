@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
     }
 
     private IEnumerator Roll()
@@ -70,8 +71,9 @@ public class Player : MonoBehaviour
     {
         int layerMask = 1 << 6;
         RaycastHit hit;
-        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 1, layerMask))
+        if (!Physics.Raycast(transform.position, Vector3.down, out hit, 2, layerMask))
         {
+            Debug.Log("Did hit");
             return true;
         }
 
