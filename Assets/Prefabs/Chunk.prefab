@@ -45,7 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8ac42ea673add4c9ccb537527aa7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tile: {fileID: 3683460457115871221, guid: 2280de3678913e2489738f0538ab83b4, type: 3}
+  _commonTile: {fileID: 4517337645800332686, guid: 462b80ee5f00c17488b002766b2aebe8,
+    type: 3}
+  _OneLineTile: {fileID: 3285802499851654241, guid: 7c01e225174aa4b409d9711acf1934e0,
+    type: 3}
+  _TwoLineTile: {fileID: 2421428916048184865, guid: 249debcae64e2054c8746c987228194a,
+    type: 3}
+  _ThreeLineTile: {fileID: 7490047290106676892, guid: 6d0496bffddbdde429da567a42e39abf,
+    type: 3}
+  _OneConnectionTile: {fileID: 7378507043995406977, guid: 07224e0f7cfaced489e8b6d901cc8c1a,
+    type: 3}
+  _TwoCloseConnectionTile: {fileID: 2117792738728378751, guid: 614df1bf8fd1b7940be79b29de6f6fd3,
+    type: 3}
   _obstacles:
   - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
   - {fileID: 779828133719094843, guid: 538d170af1371a44280e44ec85420db2, type: 3}

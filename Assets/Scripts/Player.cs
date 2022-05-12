@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
+    [SerializeField] private bool _needCheckAfterRoll = true;
+
     private Vector3 _rotationPoint;
 
     private Vector2 _currentDirection;
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (CheckAfterRoll())
+        if (_needCheckAfterRoll && CheckAfterRoll())
         {
             GetComponent<BoxCollider>().isTrigger = true;
             SetDead(true, AnalyticsHelper.DeadReason.Fall_off);

@@ -67,7 +67,7 @@ public class ChunkLoader : MonoBehaviour
         var newChunk = Instantiate(_chunkPrefab, Vector3.zero, _chunkPrefab.GetComponent<Transform>().rotation);
         if (newChunk)
         {
-            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _pathNum, _obstaclePercent);
+            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _pathNum, _obstaclePercent, _pool.Count < 1);
             newChunk.transform.position = chunkPosition;
             newChunk.GetComponent<ChunkGenerator>().AlignGrid();
             newChunk.transform.SetParent(transform);
