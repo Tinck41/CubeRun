@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
             var player = collision.gameObject.GetComponent<Player>();
             if (player)
             {
-                player.SetDead(true, AnalyticsHelper.DeadReason.Obstacle_collide);
+                player.SetDead(AnalyticsHelper.DeadReason.Obstacle_collide);
             }
         }
     }
