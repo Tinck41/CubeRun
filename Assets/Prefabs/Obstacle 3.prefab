@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 157890762262542913}
   - component: {fileID: 8892260411067222728}
   - component: {fileID: 3964192649761921477}
-  - component: {fileID: -5652491852661428295}
   m_Layer: 0
   m_Name: Obstacle 3
   m_TagString: Untagged
@@ -128,17 +127,3 @@ MonoBehaviour:
   _ascendDuration: 1
   _descendDuration: 0.3
   _ascendRotation: {x: 0, y: 0, z: 0}
---- !u!114 &-5652491852661428295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297752818420528432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bc75b905359fc4790134b2cade028a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flattenValue: 0.01
-  _flattenTime: 0.1

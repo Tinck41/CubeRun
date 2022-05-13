@@ -10,11 +10,12 @@ public class RollMovement : MonoBehaviour, IMovable
 
     private IGroundChecker _groundChecker;
 
-    private bool _canMove = true;
+    private bool _canMove;
 
-    void Start()
+    public void Start()
     {
         _groundChecker = GetComponent<IGroundChecker>();
+        _canMove = true;
 
         StartCoroutine(Roll());
     }
@@ -26,18 +27,11 @@ public class RollMovement : MonoBehaviour, IMovable
 
     public void Stop()
     {
-        _canMove = false;
-        StopAllCoroutines();
+        _rotationPoint = Quaternion.Euler(0, 45, 0) * Vector3.zero;
     }
 
     private IEnumerator Roll()
     {
-        if (!_canMove)
-        {
-            StopCoroutine(Roll());
-            yield break; 
-        }
-
         float remainingAngle = 90;
         Vector3 rotationCenter = transform.position + _rotationPoint / 2 + Vector3.down / 2;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, _rotationPoint);

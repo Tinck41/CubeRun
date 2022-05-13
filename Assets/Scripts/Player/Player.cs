@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
-    public bool isDead { get; private set; }
+    public bool isDead { get; set; }
 
     public UnityAction PlayerDead;
 
@@ -16,7 +16,22 @@ public class Player : MonoBehaviour
     private IMovable _movement;
     private IGroundChecker _groundChecker;
 
-    void Start()
+    public void Reload()
+    {
+        GetComponent<BoxCollider>().isTrigger = false;
+        isDead = false;
+        transform.position = new Vector3(0, 1, 0);
+
+        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = transform;
+
+        _movement = GetComponent<IMovable>();
+        _groundChecker = GetComponent<IGroundChecker>();
+
+        _currentDirection = Vector3.zero;
+    }
+
+    public void Start()
     {
         _movement = GetComponent<IMovable>();
         _groundChecker = GetComponent<IGroundChecker>();
@@ -43,7 +58,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Update()
+    public void Update()
     {
     }
 
