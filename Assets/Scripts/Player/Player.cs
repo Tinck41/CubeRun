@@ -28,15 +28,18 @@ public class Player : MonoBehaviour
 
     private void OnTap()
     {
-        if (_currentDirection == Vector2.right)
+        if (!isDead)
         {
-            _currentDirection = Vector2.left;
-            _movement.Move(Vector3.left);
-        }
-        else
-        {
-            _currentDirection = Vector2.right;
-            _movement.Move(Vector3.forward);
+            if (_currentDirection == Vector2.right)
+            {
+                _currentDirection = Vector2.left;
+                _movement.Move(Vector3.left);
+            }
+            else
+            {
+                _currentDirection = Vector2.right;
+                _movement.Move(Vector3.forward);
+            }
         }
     }
 
@@ -44,14 +47,14 @@ public class Player : MonoBehaviour
     {
     }
 
-    public void SetDead(bool value, AnalyticsHelper.DeadReason reason)
+    public void SetDead(AnalyticsHelper.DeadReason reason)
     {
-        isDead = value;
+        isDead = true;
 
         var vcam = FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = null;
 
-        StopAllCoroutines();
+        _movement.Stop();
 
         PlayerDead?.Invoke();
         Debug.Log("Player dead");

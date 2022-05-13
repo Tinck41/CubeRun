@@ -24,6 +24,12 @@ public class RollMovement : MonoBehaviour, IMovable
         _rotationPoint = Quaternion.Euler(0, 45, 0) * direction;
     }
 
+    public void Stop()
+    {
+        _canMove = false;
+        StopAllCoroutines();
+    }
+
     private IEnumerator Roll()
     {
         if (!_canMove)

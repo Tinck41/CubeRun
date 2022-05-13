@@ -185,6 +185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &2685022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2414,6 +2416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &100451384
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2666,6 +2670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &101560939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6186,6 +6192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &192972723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9416,6 +9424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &270971569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13350,6 +13360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &424478018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15854,6 +15866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &523893431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18121,6 +18135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &592498488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18627,6 +18643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &618398078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21858,6 +21876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -21942,6 +21961,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -2.99, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &710294537
 GameObject:
   m_ObjectHideFlags: 0
@@ -30377,6 +30416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &1044991335
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35663,8 +35704,10 @@ GameObject:
   - component: {fileID: 1258501401}
   - component: {fileID: 1258501400}
   - component: {fileID: 1258501399}
-  - component: {fileID: 1258501398}
   - component: {fileID: 1258501402}
+  - component: {fileID: 1258501405}
+  - component: {fileID: 1258501404}
+  - component: {fileID: 1258501398}
   - component: {fileID: 1258501403}
   m_Layer: 0
   m_Name: Player
@@ -35743,14 +35786,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258501397}
-  m_LocalRotation: {x: 0, y: 0.38267535, z: 0, w: 0.9238829}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 44.999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!114 &1258501402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35763,7 +35806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6c199c94fcecc4bb1051a5e68a9ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 500
 --- !u!54 &1258501403
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35780,6 +35822,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &1258501404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258501397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97d74054a8919f4faca3fba9c7a7e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &1258501405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258501397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5340e3ce92d34514a9cab675da3d13c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 500
 --- !u!1 &1260909885
 GameObject:
   m_ObjectHideFlags: 0
@@ -40489,6 +40559,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &1370276433
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49481,6 +49553,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &1679879935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59458,6 +59532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &2070214969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59837,6 +59913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 3
   _speed: 0.5
+  _animationPeriod: 0
+  _animationPause: 0
 --- !u!65 &2083009064
 BoxCollider:
   m_ObjectHideFlags: 0

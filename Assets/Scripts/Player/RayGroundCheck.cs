@@ -10,7 +10,8 @@ public class RayGroundCheck : MonoBehaviour, IGroundChecker
         RaycastHit hit;
         if (!Physics.Raycast(transform.position, Vector3.down, out hit, 2, _layerMask))
         {
-            Debug.Log("Did not hit");
+            GetComponent<BoxCollider>().isTrigger = true;
+            GetComponent<Player>().SetDead(AnalyticsHelper.DeadReason.Fall_off);
             return false;
         }
 
