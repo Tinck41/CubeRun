@@ -53,6 +53,7 @@ public class ChunkLoader : MonoBehaviour
                 _pool.Enqueue(newChunk);
             }
         }
+
     }
 
     GameObject LoadChunk()
