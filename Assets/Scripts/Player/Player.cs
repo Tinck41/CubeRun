@@ -41,6 +41,16 @@ public class Player : MonoBehaviour
         InputDetection.TapEvent += OnTap;
     }
 
+    public void OnDestroy()
+    {
+        InputDetection.TapEvent -= OnTap;
+    }
+
+    public void StartRolling()
+    {
+        OnTap();
+    }
+
     private void OnTap()
     {
         if (!isDead)

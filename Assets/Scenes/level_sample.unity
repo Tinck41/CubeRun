@@ -1119,6 +1119,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1258501402}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: StartRolling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &66814552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32693,7 +32705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -89, y: -131}
+  m_AnchoredPosition: {x: -50, y: -131}
   m_SizeDelta: {x: 386.2124, y: 78.3708}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1065876766
@@ -49032,9 +49044,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 328, y: -131}
+  m_AnchoredPosition: {x: 50, y: -131}
   m_SizeDelta: {x: 279.16553, y: 78.3708}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1578657041
 MonoBehaviour:
   m_ObjectHideFlags: 0
