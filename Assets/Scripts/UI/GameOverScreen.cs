@@ -19,4 +19,10 @@ public class GameOverScreen : MonoBehaviour
     {
         GameManager.Instance.RestartGame();
     }
+
+    public void HomeButton()
+    {
+        GameManager.Instance.RestartGame();
+        GameManager.Instance.SetState(GameState.MainMenu);
+    }
 }

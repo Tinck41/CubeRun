@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainMenuScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        GameManager.GameStateChanged += OnGameStateChanged;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void onDestroy()
     {
-        
+        GameManager.GameStateChanged -= OnGameStateChanged;
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        gameObject.SetActive(state == GameState.MainMenu);
     }
 }
