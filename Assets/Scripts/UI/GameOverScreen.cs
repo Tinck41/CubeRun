@@ -1,13 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverScreen : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _score;
+
+    public void Start()
+    {
+        GameManager.GameStateChanged += OnGameStateChanged;
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.GameStateChanged -= OnGameStateChanged;
+    }
+
     public void Setup()
     {
-        gameObject.SetActive(true);
 
-        GameManager.GameStateChanged += OnGameStateChanged;
+        gameObject.SetActive(true);
+        _score.text = ScoreManager.instance.score.ToString();
     }
 
     void OnGameStateChanged(GameState state)

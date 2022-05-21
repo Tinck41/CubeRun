@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RollMovement : MonoBehaviour, IMovable
@@ -47,6 +46,11 @@ public class RollMovement : MonoBehaviour, IMovable
         if (_groundChecker !=  null)
         {
             _canMove = _groundChecker.IsOnGround();
+        }
+
+        if (_rotationPoint != Vector3.zero)
+        {
+            ScoreManager.instance.AddScore();
         }
 
         yield return StartCoroutine(Roll());

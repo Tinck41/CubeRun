@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         _chunkLoader.Reload();
         _player.Reload();
+        ScoreManager.instance.Reload();
         SetState(GameState.GameRunning);
     }
 
