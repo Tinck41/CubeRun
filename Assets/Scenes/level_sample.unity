@@ -13202,6 +13202,7 @@ GameObject:
   - component: {fileID: 414225589}
   - component: {fileID: 414225588}
   - component: {fileID: 414225591}
+  - component: {fileID: 414225592}
   m_Layer: 5
   m_Name: Ad
   m_TagString: Untagged
@@ -13333,6 +13334,21 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &414225592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414225586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a91516d8cc9d46aba163e0459aab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showAdButton: {fileID: 414225588}
+  _androidAdUnitId: Rewarded_Android
+  _iOSAdUnitId: Rewarded_iOS
 --- !u!1 &417928684
 GameObject:
   m_ObjectHideFlags: 0
@@ -34632,6 +34648,54 @@ MonoBehaviour:
   - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
   - {fileID: 779828133719094843, guid: 538d170af1371a44280e44ec85420db2, type: 3}
   - {fileID: 1297752818420528432, guid: 6d900d041a6c83f40a4259c69e8b0b32, type: 3}
+--- !u!1 &1083949530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083949532}
+  - component: {fileID: 1083949531}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1083949531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083949530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028b9bd1edaf311479f40bbe7e578480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _androidGameId: 4765082
+  _iOSGameId: 4765083
+  _testMode: 1
+  rewardedAdsButton: {fileID: 414225592}
+--- !u!4 &1083949532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083949530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.138484, y: 1.1266303, z: 15.364782}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1087557943
 GameObject:
   m_ObjectHideFlags: 0
