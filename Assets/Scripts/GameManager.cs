@@ -23,8 +23,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _player.PlayerDead += GameOver;
+        SetState(State);
+
+        Player.PlayerDead += GameOver;
     }
+
+    public void OnDestroy()
+    {
+        Player.PlayerDead -= GameOver;
+    }
+
 
     public void SetState(GameState newState)
     {
@@ -32,13 +40,19 @@ public class GameManager : MonoBehaviour
 
         switch (State)
         {
-            case GameState.MainMenu: 
-                break;
+            case GameState.MainMenu:
+                {
+                    break;
+                }
             case GameState.GameRunning:
-                GameStart();
-                break;
+                {
+                    PlayerDataHelper.SetScore(0);
+                    break;
+                }
             case GameState.GameOver:
-                break;
+                {
+                    break;
+                }
             default: 
                 break;
         }
@@ -50,19 +64,12 @@ public class GameManager : MonoBehaviour
     {
         _chunkLoader.Reload();
         _player.Reload();
-        ScoreManager.instance.Reload();
         SetState(GameState.GameRunning);
-    }
-
-    void GameStart()
-    {
-        _mainMenuScreen.gameObject.SetActive(false);
     }
 
     void GameOver()
     {
         SetState(GameState.GameOver);
-        _gameOverScreen.Setup();
         Debug.Log("Game End");
     }
 }

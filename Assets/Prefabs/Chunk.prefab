@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tile: {fileID: 3683460457115871221, guid: 2280de3678913e2489738f0538ab83b4, type: 3}
+  _coin: {fileID: 1043854923615808892, guid: 235df9f2b6b56f545870a1af5c46054c, type: 3}
   _obstacles:
   - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
   - {fileID: 779828133719094843, guid: 538d170af1371a44280e44ec85420db2, type: 3}
