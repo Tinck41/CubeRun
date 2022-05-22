@@ -6,12 +6,12 @@ public static class PlayerDataHelper
     public static Action<int> CoinsChanged;
     public static Action<int> RecordChanged;
 
-    private static int _score;
+    private static int _score = 0;
 
     public static void AddCoins(int value)
     {
         PlayerPrefs.SetInt("Coins", GetCoins() + value);
-        CoinsChanged?.Invoke(value);
+        CoinsChanged?.Invoke(GetCoins());
     }
 
     public static int GetCoins()
@@ -21,7 +21,7 @@ public static class PlayerDataHelper
 
     public static void SetRecord(int value)
     {
-        PlayerPrefs.SetInt("HighestScore", GetRecord() + value);
+        PlayerPrefs.SetInt("HighestScore", value);
         RecordChanged?.Invoke(value);
     }
 
@@ -38,6 +38,11 @@ public static class PlayerDataHelper
     public static void AddScore(int value)
     {
         _score += value;
+
+        if (_score > GetRecord())
+        {
+            SetRecord(_score);
+        }
     }
 
     public static int GetScore()

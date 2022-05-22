@@ -23,6 +23,6 @@ public class ScoreCounter : MonoBehaviour
         score += value;
 
         _scoreText.text = score.ToString();
-        PlayerDataHelper.AddScore(score);
+        PlayerDataHelper.AddScore(value);
     }
 }

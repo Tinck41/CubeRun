@@ -17,6 +17,7 @@ public class TopHUD : MonoBehaviour
 
     private void OnRecordChanged(int value)
     {
+        _scoreText.text = "Best: " + value.ToString();
     }
 
     private void OnCoinsChanged(int value)
