@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChunkGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _tile;
+    [SerializeField] private GameObject _coin;
     [SerializeField] private GameObject[] _obstacles;
 
     private GameObject[,] _grid;
@@ -59,6 +60,8 @@ public class ChunkGenerator : MonoBehaviour
                 CreatePath();
             }
 
+            CreateCoins();
+
             _shuffledTileCoords = new Queue<Coord>(Utility.ShuffleArray(_allTileCoords.ToArray()));
 
             var obstacleCount = (int)(_shuffledTileCoords.Count * obstaclePercent);
@@ -100,7 +103,7 @@ public class ChunkGenerator : MonoBehaviour
         }
     }
 
-    void CreatePath()
+    private void CreatePath()
     {
         var currentPostion = _playerSpawnPosition;
         for (int y = currentPostion.y; y < _size.y; y++)
@@ -131,6 +134,21 @@ public class ChunkGenerator : MonoBehaviour
             //var instance = Instantiate(_obstacles[0], new Vector3(currentPostion.x * tileWidth + offset, 1, currentPostion.y * (tileWidth / 2)), transform.rotation);
             //instance.GetComponent<Renderer>().material.color = new Color(255f, 255f, 0f, 1f);
             //instance.transform.SetParent(transform.Find("GridHolder").transform);
+        }
+    }
+
+    private void CreateCoins()
+    {
+        var random = new System.Random(Guid.NewGuid().GetHashCode());
+
+        foreach (var coord in _pathTileCoords)
+        {
+            if (random.NextDouble() < 0.01f && coord.y > 5)
+            {
+                var position = CoordToPosition(coord.x, coord.y);
+                var coin = Instantiate(_coin, position + Vector3.up * 1, transform.rotation);
+                coin.transform.SetParent(transform.Find("GridHolder").transform);
+            }
         }
     }
 

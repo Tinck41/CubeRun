@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class TopHUD : MonoBehaviour
 {
@@ -9,6 +10,18 @@ public class TopHUD : MonoBehaviour
     public void Start()
     {
         Reload();
+
+        PlayerDataHelper.CoinsChanged += OnCoinsChanged;
+        PlayerDataHelper.RecordChanged += OnRecordChanged;
+    }
+
+    private void OnRecordChanged(int value)
+    {
+    }
+
+    private void OnCoinsChanged(int value)
+    {
+        _coinsText.text = PlayerDataHelper.GetCoins().ToString();
     }
 
     public void Reload()
