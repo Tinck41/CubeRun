@@ -6,6 +6,8 @@ public static class PlayerDataHelper
     public static Action<int> CoinsChanged;
     public static Action<int> RecordChanged;
 
+    private static int _score;
+
     public static void AddCoins(int value)
     {
         PlayerPrefs.SetInt("Coins", GetCoins() + value);
@@ -26,5 +28,20 @@ public static class PlayerDataHelper
     public static int GetRecord()
     {
         return PlayerPrefs.GetInt("HighestScore", 0);
+    }
+
+    public static void SetScore(int value)
+    {
+        _score = value;
+    }
+
+    public static void AddScore(int value)
+    {
+        _score += value;
+    }
+
+    public static int GetScore()
+    {
+        return _score;
     }
 }

@@ -8,12 +8,14 @@ public class RollMovement : MonoBehaviour, IMovable
     private Vector3 _rotationPoint;
 
     private IGroundChecker _groundChecker;
+    private ScoreCounter _scoreCounter;
 
     private bool _canMove;
 
     public void Start()
     {
         _groundChecker = GetComponent<IGroundChecker>();
+        _scoreCounter = GetComponent<ScoreCounter>();
         _canMove = true;
 
         StartCoroutine(Roll());
@@ -46,6 +48,11 @@ public class RollMovement : MonoBehaviour, IMovable
         if (_groundChecker !=  null)
         {
             _canMove = _groundChecker.IsOnGround();
+        }
+
+        if (_rotationPoint != Vector3.zero)
+        {
+            _scoreCounter?.AddScore(1);
         }
 
         yield return StartCoroutine(Roll());

@@ -17,7 +17,20 @@ public class GameOverScreen : MonoBehaviour
 
     void OnGameStateChanged(GameState state)
     {
-        gameObject.SetActive(state == GameState.GameOver);
+        if (state == GameState.GameOver)
+        {
+            gameObject.SetActive(true);
+            SetScore();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void SetScore()
+    {
+        _score.text = PlayerDataHelper.GetScore().ToString();
     }
 
     public void RestartButton()

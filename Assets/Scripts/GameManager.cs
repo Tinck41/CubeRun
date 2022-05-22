@@ -40,12 +40,19 @@ public class GameManager : MonoBehaviour
 
         switch (State)
         {
-            case GameState.MainMenu: 
-                break;
+            case GameState.MainMenu:
+                {
+                    break;
+                }
             case GameState.GameRunning:
-                break;
+                {
+                    PlayerDataHelper.SetScore(0);
+                    break;
+                }
             case GameState.GameOver:
-                break;
+                {
+                    break;
+                }
             default: 
                 break;
         }
