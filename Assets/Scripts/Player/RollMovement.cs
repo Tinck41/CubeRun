@@ -48,11 +48,6 @@ public class RollMovement : MonoBehaviour, IMovable
             _canMove = _groundChecker.IsOnGround();
         }
 
-        if (_rotationPoint != Vector3.zero)
-        {
-            ScoreManager.instance.AddScore();
-        }
-
         yield return StartCoroutine(Roll());
     }
 }

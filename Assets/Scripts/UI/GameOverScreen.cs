@@ -15,13 +15,6 @@ public class GameOverScreen : MonoBehaviour
         GameManager.GameStateChanged -= OnGameStateChanged;
     }
 
-    public void Setup()
-    {
-
-        gameObject.SetActive(true);
-        _score.text = ScoreManager.instance.score.ToString();
-    }
-
     void OnGameStateChanged(GameState state)
     {
         gameObject.SetActive(state == GameState.GameOver);

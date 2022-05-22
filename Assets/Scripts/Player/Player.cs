@@ -1,13 +1,12 @@
-using System.Collections;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using Cinemachine;
 
 public class Player : MonoBehaviour
 {
     public bool isDead { get; set; }
 
-    public UnityAction PlayerDead;
+    public static event Action PlayerDead;
 
     public int score { get; private set; }
 
