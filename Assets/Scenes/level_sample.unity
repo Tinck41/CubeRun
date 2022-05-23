@@ -3303,6 +3303,8 @@ GameObject:
   - component: {fileID: 115539796}
   - component: {fileID: 115539795}
   - component: {fileID: 115539797}
+  - component: {fileID: 115539799}
+  - component: {fileID: 115539798}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3415,6 +3417,33 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &115539798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115539793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72013d173ac68f24a844a786475c5088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &115539799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115539793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119a91516d8cc9d46aba163e0459aab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showAdButton: {fileID: 115539797}
+  _androidAdUnitId: Rewarded_Android
+  _iOSAdUnitId: Rewarded_iOS
 --- !u!1 &120429118
 GameObject:
   m_ObjectHideFlags: 0
@@ -13203,6 +13232,7 @@ GameObject:
   - component: {fileID: 414225588}
   - component: {fileID: 414225591}
   - component: {fileID: 414225592}
+  - component: {fileID: 414225593}
   m_Layer: 5
   m_Name: Ad
   m_TagString: Untagged
@@ -13349,6 +13379,18 @@ MonoBehaviour:
   _showAdButton: {fileID: 414225588}
   _androidAdUnitId: Rewarded_Android
   _iOSAdUnitId: Rewarded_iOS
+--- !u!114 &414225593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414225586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d306389085b5841bd587f0b9579f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &417928684
 GameObject:
   m_ObjectHideFlags: 0
@@ -34680,7 +34722,9 @@ MonoBehaviour:
   _androidGameId: 4765082
   _iOSGameId: 4765083
   _testMode: 1
-  rewardedAdsButton: {fileID: 414225592}
+  rewardedAdsButton:
+  - {fileID: 414225592}
+  - {fileID: 115539799}
 --- !u!4 &1083949532
 Transform:
   m_ObjectHideFlags: 0
@@ -50889,7 +50933,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.4620853, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

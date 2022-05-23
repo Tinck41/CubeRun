@@ -9,6 +9,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null;
 
+    private IReward _reward;
+
     void Awake()
     {
 #if UNITY_IOS
@@ -18,6 +20,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 #endif
 
         _showAdButton.interactable = false;
+
+        _reward = GetComponent<IReward>();
     }
 
     public void LoadAd()
@@ -49,7 +53,14 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
 
-            PlayerDataHelper.AddCoins(100);
+            if (_reward != null)
+            {
+                _reward.AddReward();
+            }
+            else
+            {
+                Debug.LogError("Ads reward is null!");
+            }
             _showAdButton.onClick.RemoveListener(ShowAd);
 
             Advertisement.Load(_adUnitId, this);
