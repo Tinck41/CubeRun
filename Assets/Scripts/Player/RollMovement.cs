@@ -10,25 +10,26 @@ public class RollMovement : MonoBehaviour, IMovable
     private IGroundChecker _groundChecker;
     private ScoreCounter _scoreCounter;
 
-    private bool _canMove;
-
     public void Start()
     {
         _groundChecker = GetComponent<IGroundChecker>();
         _scoreCounter = GetComponent<ScoreCounter>();
-        _canMove = true;
+    }
 
+    public void StartMove()
+    {
         StartCoroutine(Roll());
     }
 
-    public void Move(Vector3 direction)
+    public void ChangeDirection(Vector3 direction)
     {
         _rotationPoint = Quaternion.Euler(0, 45, 0) * direction;
     }
 
-    public void Stop()
+    public void StopMove()
     {
         _rotationPoint = Quaternion.Euler(0, 45, 0) * Vector3.zero;
+        StopAllCoroutines();
     }
 
     private IEnumerator Roll()
@@ -47,7 +48,7 @@ public class RollMovement : MonoBehaviour, IMovable
 
         if (_groundChecker !=  null)
         {
-            _canMove = _groundChecker.IsOnGround();
+            _groundChecker.IsOnGround();
         }
 
         if (_rotationPoint != Vector3.zero)

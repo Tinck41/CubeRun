@@ -11,25 +11,28 @@ public class Player : MonoBehaviour
     public int score { get; private set; }
 
     private Vector2 _currentDirection;
+    private Vector3 _actualDirection;
 
     private IMovable _movement;
     private ScoreCounter _scoreCounter;
 
+    private Quaternion _initialRotation;
+
     public void Reload()
     {
+        _movement.StopMove();
+        _scoreCounter.Reset();
+
         GetComponent<BoxCollider>().isTrigger = false;
         isDead = false;
+        transform.rotation = _initialRotation;
         transform.position = new Vector3(0, 1, 0);
 
         var vcam = FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = transform;
 
-        _movement = GetComponent<IMovable>();
-        _scoreCounter = GetComponent<ScoreCounter>();
-
-        _scoreCounter?.Reset();
-
         _currentDirection = Vector3.zero;
+        _movement.StartMove();
     }
 
     public void Start()
@@ -38,6 +41,11 @@ public class Player : MonoBehaviour
         _scoreCounter = GetComponent<ScoreCounter>();
 
         _currentDirection = Vector2.zero;
+        _actualDirection = Vector3.zero;
+
+        _initialRotation = transform.rotation;
+
+        _movement.StartMove();
 
         InputDetection.TapEvent += OnTap;
     }
@@ -47,9 +55,11 @@ public class Player : MonoBehaviour
         InputDetection.TapEvent -= OnTap;
     }
 
-    public void StartRolling()
+    public void StartMoving()
     {
-        OnTap();
+        _currentDirection = Vector2.right;
+        _actualDirection = Vector3.forward;
+        _movement.ChangeDirection(_actualDirection);
     }
 
     private void OnTap()
@@ -59,18 +69,16 @@ public class Player : MonoBehaviour
             if (_currentDirection == Vector2.right)
             {
                 _currentDirection = Vector2.left;
-                _movement.Move(Vector3.left);
+                _actualDirection = Vector3.left;
+                _movement.ChangeDirection(_actualDirection);
             }
             else
             {
                 _currentDirection = Vector2.right;
-                _movement.Move(Vector3.forward);
+                _actualDirection = Vector3.forward;
+                _movement.ChangeDirection(_actualDirection);
             }
         }
-    }
-
-    public void Update()
-    {
     }
 
     public void SetDead(AnalyticsHelper.DeadReason reason)
@@ -82,7 +90,7 @@ public class Player : MonoBehaviour
         var vcam = FindObjectOfType<CinemachineVirtualCamera>();
         vcam.Follow = null;
 
-        _movement.Stop();
+        _movement.StopMove();
         PlayerDataHelper.SetScore(_scoreCounter.score);
 
         PlayerDead?.Invoke();
