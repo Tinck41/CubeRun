@@ -4,8 +4,12 @@ public class GameRunningState : GameState
 {
     [SerializeField] private Player _player;
 
+    private bool _appPaused;
+
     public void Start()
     {
+        _appPaused = false;
+
         Player.PlayerDead += OnPlayerDeath;
     }
 
@@ -28,7 +32,7 @@ public class GameRunningState : GameState
 
     public override void UpdateState()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || _appPaused)
         {
             GameManager.instance.SwitchState(GameManager.instance.GetComponent<GamePausedState>());
         }
@@ -41,6 +45,6 @@ public class GameRunningState : GameState
 
     private void OnApplicationPause(bool pause)
     {
-        GameManager.instance.SwitchState(GameManager.instance.GetComponent<GamePausedState>());
+        _appPaused = pause;
     }
 }
