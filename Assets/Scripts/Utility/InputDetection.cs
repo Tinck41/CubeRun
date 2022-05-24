@@ -7,25 +7,23 @@ public class InputDetection : MonoBehaviour
 
     private bool _isTouching;
     private bool _isMobile;
-    private bool _isGameRunning;
+    private bool _detectionAllowed;
 
     void Start()
     {
-        _isGameRunning = false;
+        _detectionAllowed = false;
         _isTouching = false;
         _isMobile = Application.isMobilePlatform;
-
-        GameManager.GameStateChanged += OnGameStateChanged;
     }
 
-    private void OnGameStateChanged(GameState state)
+    public void AllowDetection(bool value)
     {
-        _isGameRunning = state == GameState.GameRunning;
+        _detectionAllowed = value;
     }
 
     void Update()
     {
-        if (!_isGameRunning)
+        if (!_detectionAllowed)
         {
             return;
         }

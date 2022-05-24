@@ -11,6 +11,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
     private IReward _reward;
 
+    public bool loaded { get; private set; }
+
     void Awake()
     {
 #if UNITY_IOS
@@ -22,6 +24,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _showAdButton.interactable = false;
 
         _reward = GetComponent<IReward>();
+
+        loaded = false;
     }
 
     public void LoadAd()
@@ -39,6 +43,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             _showAdButton.onClick.AddListener(ShowAd);
             _showAdButton.interactable = true;
         }
+
+        loaded = true;
     }
 
     public void ShowAd()
