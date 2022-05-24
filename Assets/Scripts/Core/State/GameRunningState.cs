@@ -28,7 +28,10 @@ public class GameRunningState : GameState
 
     public override void UpdateState()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.instance.SwitchState(GameManager.instance.GetComponent<GamePausedState>());
+        }
     }
 
     private void OnPlayerDeath()

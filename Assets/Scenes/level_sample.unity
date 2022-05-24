@@ -35513,10 +35513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 4765082
   _iOSGameId: 4765083
-  _testMode: 1
+  _testMode: 0
   rewardedAdsButton:
   - {fileID: 414225592}
-  - {fileID: 115539799}
 --- !u!4 &1083949532
 Transform:
   m_ObjectHideFlags: 0
@@ -35525,7 +35524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083949530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.138484, y: 1.1266303, z: 15.364782}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42672,6 +42671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 268265644}
+  watchAdButton: {fileID: 115539799}
 --- !u!1 &1307802080
 GameObject:
   m_ObjectHideFlags: 0
@@ -52282,7 +52282,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.4620853, y: 1}
+    m_SensorSize: {x: 0.46153846, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

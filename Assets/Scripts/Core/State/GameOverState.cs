@@ -1,8 +1,16 @@
+using UnityEngine;
+
 public class GameOverState : GameState
 {
+    [SerializeField] private RewardedAdsButton watchAdButton;
+
     public override void EnterState()
     {
         UI?.SetActive(true);
+        if (!watchAdButton.loaded)
+        {
+            watchAdButton?.LoadAd();
+        }
     }
 
     public override void LeaveState()
