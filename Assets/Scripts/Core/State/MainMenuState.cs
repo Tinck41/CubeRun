@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MainMenuState : GameState
 {
+    [SerializeField] private GameObject _settingsWindow;
+
     public override void EnterState()
     {
         UI?.SetActive(true);
