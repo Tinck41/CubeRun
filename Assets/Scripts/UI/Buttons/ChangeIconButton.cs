@@ -5,15 +5,9 @@ public class ChangeIconButton : MonoBehaviour
 {
     [SerializeField] private Sprite _imageToSwap;
 
-    private Image iconHolder;
-
-    private void Start()
-    {
-        iconHolder = GetComponent<Image>();
-    }
-
     public void Swap()
     {
+        var iconHolder = GetComponent<Image>();
         if (iconHolder != null)
         {
             var temp = iconHolder.sprite;

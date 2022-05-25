@@ -17,7 +17,7 @@ public class SettingsWindow : MonoBehaviour
 
         if (!musicEnabled)
         {
-            _soundsIcon?.Swap();
+            _musicIcon?.Swap();
         }
     }
 
