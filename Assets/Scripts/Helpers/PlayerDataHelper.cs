@@ -5,6 +5,8 @@ public static class PlayerDataHelper
 {
     public static Action<int> CoinsChanged;
     public static Action<int> RecordChanged;
+    public static Action<bool> MusicEnabled;
+    public static Action<bool> SoundsEnabled;
 
     private static int _score = 0;
 
@@ -48,5 +50,27 @@ public static class PlayerDataHelper
     public static int GetScore()
     {
         return _score;
+    }
+
+    public static void SetMusicEnabled(bool value)
+    {
+        PlayerPrefs.SetInt("MusicEnabled", Convert.ToInt32(value));
+        MusicEnabled?.Invoke(value);
+    }
+
+    public static bool isMusicEnabled()
+    {
+        return Convert.ToBoolean(PlayerPrefs.GetInt("MusicEnabled", 1));
+    }
+
+    public static void SetSoundsEnabled(bool value)
+    {
+        PlayerPrefs.SetInt("SoundsEnabled", Convert.ToInt32(value));
+        SoundsEnabled?.Invoke(value);
+    }
+
+    public static bool isSoundsEnabled()
+    {
+        return Convert.ToBoolean(PlayerPrefs.GetInt("SoundsEnabled", 1));
     }
 }
