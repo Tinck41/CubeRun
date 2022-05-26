@@ -4,6 +4,16 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
+    private enum SkinType
+    {
+        UNDEFINED = 0,
+        ORANGE,
+        YELLOW
+    }
+
+    [SerializeField] private GameObject[] _skins;
+    [SerializeField] private SkinType _initialSkin;
+
     public bool isDead { get; set; }
 
     public static event Action PlayerDead;
@@ -17,6 +27,8 @@ public class Player : MonoBehaviour
     private ScoreCounter _scoreCounter;
 
     private Quaternion _initialRotation;
+
+    private SkinType _currentSkin;
 
     public void Reload()
     {
@@ -37,6 +49,8 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
+        SetSkin(_initialSkin);
+
         _movement = GetComponent<IMovable>();
         _scoreCounter = GetComponent<ScoreCounter>();
 
@@ -53,6 +67,23 @@ public class Player : MonoBehaviour
     public void OnDestroy()
     {
         InputDetection.TapEvent -= OnTap;
+    }
+
+    private void SetSkin(SkinType type)
+    {
+        if (type == SkinType.UNDEFINED)
+        {
+            Debug.LogError("Player skin is " + type.ToString());
+            throw new NullReferenceException();
+        }
+
+        foreach(var skin in _skins)
+        {
+            skin.gameObject.SetActive(false);
+        }
+
+        _currentSkin = type;
+        _skins[Convert.ToInt32(type) - 1].gameObject.SetActive(true);
     }
 
     public void StartMoving()
