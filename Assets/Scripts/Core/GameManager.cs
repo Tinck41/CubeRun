@@ -50,4 +50,9 @@ public class GameManager : MonoBehaviour
 
         currentState?.EnterState();
     }
+
+    public Player GetPlayer()
+    {
+        return _player;
+    }
 }

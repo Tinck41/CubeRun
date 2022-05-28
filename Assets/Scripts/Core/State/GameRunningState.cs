@@ -22,6 +22,8 @@ public class GameRunningState : GameState
     {
         UI?.SetActive(true);
         GameManager.instance.inputDetection.AllowDetection(true);
+        GameManager.instance.topHUD.SetBarEnabled(BarType.COINS, true);
+        GameManager.instance.topHUD.SetBarEnabled(BarType.RECORD, true);
     }
 
     public override void LeaveState()
