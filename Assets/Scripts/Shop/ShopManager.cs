@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -5,6 +6,8 @@ public class ShopManager : MonoBehaviour
 {
     [SerializeField] private List<ShopItem> _items;
     [SerializeField] private SelectedItem _selectedItemHolder;
+    
+    [SerializeField] private TextMeshProUGUI _headerText;
 
     private void Start()
     {
@@ -13,7 +16,9 @@ public class ShopManager : MonoBehaviour
 
     public void Init()
     {
-        _selectedItemHolder.SetSkin(GameManager.instance.GetPlayer().GetSkin());
+        var skinType = GameManager.instance.GetPlayer().GetSkin();
+        _selectedItemHolder.SetSkin(skinType);
+        _headerText.text = "skin." + skinType.ToString() + ".name";
         UpdateBuyButtons();
     }
 
@@ -41,7 +46,9 @@ public class ShopManager : MonoBehaviour
         {
             if (item.isSelected)
             {
-                _selectedItemHolder.SetSkin(item.GetSkinType());
+                var skinType = item.GetSkinType();
+                _selectedItemHolder.SetSkin(skinType);
+                _headerText.text = "skin." + skinType.ToString() + ".name";
             }
         }
     }
