@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ChunkLoader _chunkLoader;
 
     [SerializeField] public InputDetection inputDetection;
+    
+    [SerializeField] public TopHUD topHUD;
 
     public static GameManager instance;
 
