@@ -14,6 +14,7 @@ public class ShopManager : MonoBehaviour
     public void Init()
     {
         _selectedItemHolder.SetSkin(GameManager.instance.GetPlayer().GetSkin());
+        UpdateBuyButtons();
     }
 
     public void UnselectAll()
@@ -42,6 +43,19 @@ public class ShopManager : MonoBehaviour
             {
                 _selectedItemHolder.SetSkin(item.GetSkinType());
             }
+        }
+    }
+
+    private void UpdateBuyButtons()
+    {
+        if (_items.Count < 1)
+        {
+            return;
+        }
+
+        foreach (var item in _items)
+        {
+            item.UpdateButton();
         }
     }
 }

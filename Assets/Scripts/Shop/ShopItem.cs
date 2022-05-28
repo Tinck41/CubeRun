@@ -45,7 +45,7 @@ public class ShopItem : MonoBehaviour
         GameManager.instance.GetPlayer().SetSkin(_skinType);
     }
 
-    private void UpdateButton()
+    public void UpdateButton()
     {
         if (_buyButton == null)
         {
@@ -55,12 +55,14 @@ public class ShopItem : MonoBehaviour
 
         if (_isBought)
         {
+            _buyButton.interactable = true;
             _buyButton.onClick.RemoveListener(Buy);
             _buyButton.onClick.AddListener(Equip);
             _costText.text = "Equip";
         }
         else
         {
+            _buyButton.interactable = CanBuy();
             _buyButton.onClick.RemoveListener(Equip);
             _buyButton.onClick.AddListener(Buy);
             _costText.text = _cost.ToString();
