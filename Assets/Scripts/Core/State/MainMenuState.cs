@@ -6,6 +6,8 @@ public class MainMenuState : GameState
 
     public override void EnterState()
     {
+        GameManager.instance.topHUD.SetBarEnabled(BarType.COINS, true);
+        GameManager.instance.topHUD.SetBarEnabled(BarType.RECORD, true);
         UI?.SetActive(true);
     }
 

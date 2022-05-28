@@ -2,15 +2,15 @@ using System;
 using UnityEngine;
 using Cinemachine;
 
+public enum SkinType
+{
+    UNDEFINED = 0,
+    ORANGE,
+    YELLOW
+}
+
 public class Player : MonoBehaviour
 {
-    private enum SkinType
-    {
-        UNDEFINED = 0,
-        ORANGE,
-        YELLOW
-    }
-
     [SerializeField] private GameObject[] _skins;
     [SerializeField] private SkinType _initialSkin;
 
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
         InputDetection.TapEvent -= OnTap;
     }
 
-    private void SetSkin(SkinType type)
+    public void SetSkin(SkinType type)
     {
         if (type == SkinType.UNDEFINED)
         {
@@ -128,5 +128,10 @@ public class Player : MonoBehaviour
         Debug.Log("Player dead");
 
         AnalyticsHelper.OnPlayerDead(score, reason);
+    }
+
+    public SkinType GetSkin()
+    {
+        return _currentSkin;
     }
 }

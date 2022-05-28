@@ -11,6 +11,8 @@ public class GameOverState : GameState
         {
             watchAdButton?.LoadAd();
         }
+        GameManager.instance.topHUD.SetBarEnabled(BarType.COINS, false);
+        GameManager.instance.topHUD.SetBarEnabled(BarType.RECORD, false);
     }
 
     public override void LeaveState()
