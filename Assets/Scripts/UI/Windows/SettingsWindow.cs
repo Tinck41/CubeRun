@@ -7,9 +7,9 @@ public class SettingsWindow : MonoBehaviour
 
     private void Start()
     {
-        var soundsEnabled = PlayerDataHelper.isSoundsEnabled();
-        var musicEnabled = PlayerDataHelper.isMusicEnabled();
-
+        var soundsEnabled = SaveLoadManager.settingsData.soundEnabled;
+        var musicEnabled = SaveLoadManager.settingsData.musicEnabled;
+        
         if (!soundsEnabled)
         {
             _soundsIcon?.Swap();
@@ -23,16 +23,11 @@ public class SettingsWindow : MonoBehaviour
 
     public void OnSoundsButtonClick()
     {
-        PlayerDataHelper.SetSoundsEnabled(!PlayerDataHelper.isSoundsEnabled());
+        SaveLoadManager.settingsData.soundEnabled = !SaveLoadManager.settingsData.soundEnabled;
     }
 
     public void OnMusicButtonClick()
     {
-        PlayerDataHelper.SetMusicEnabled(!PlayerDataHelper.isMusicEnabled());
-    }
-
-    public void OnCreaditsButtonClick()
-    {
-
+        SaveLoadManager.settingsData.musicEnabled = !SaveLoadManager.settingsData.musicEnabled;
     }
 }

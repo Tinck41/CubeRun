@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holder: {fileID: 1043854923615808892}
+  _value: 10
 --- !u!1 &1043854923615808892
 GameObject:
   m_ObjectHideFlags: 0

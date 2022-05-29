@@ -2,33 +2,21 @@ using System;
 using UnityEngine;
 using Cinemachine;
 
-public enum SkinType
-{
-    UNDEFINED = 0,
-    ORANGE,
-    YELLOW
-}
-
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _skins;
-    [SerializeField] private SkinType _initialSkin;
-
     public bool isDead { get; set; }
 
     public static event Action PlayerDead;
-
-    public int score { get; private set; }
 
     private Vector2 _currentDirection;
     private Vector3 _actualDirection;
 
     private IMovable _movement;
+
     private ScoreCounter _scoreCounter;
+    public SkinManager skinManager { get; private set; }
 
     private Quaternion _initialRotation;
-
-    private SkinType _currentSkin;
 
     public void Reload()
     {
@@ -49,10 +37,9 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
-        SetSkin(_initialSkin);
-
         _movement = GetComponent<IMovable>();
         _scoreCounter = GetComponent<ScoreCounter>();
+        skinManager = GetComponent<SkinManager>();
 
         _currentDirection = Vector2.zero;
         _actualDirection = Vector3.zero;
@@ -67,23 +54,6 @@ public class Player : MonoBehaviour
     public void OnDestroy()
     {
         InputDetection.TapEvent -= OnTap;
-    }
-
-    public void SetSkin(SkinType type)
-    {
-        if (type == SkinType.UNDEFINED)
-        {
-            Debug.LogError("Player skin is " + type.ToString());
-            throw new NullReferenceException();
-        }
-
-        foreach(var skin in _skins)
-        {
-            skin.gameObject.SetActive(false);
-        }
-
-        _currentSkin = type;
-        _skins[Convert.ToInt32(type) - 1].gameObject.SetActive(true);
     }
 
     public void StartMoving()
@@ -122,16 +92,11 @@ public class Player : MonoBehaviour
         vcam.Follow = null;
 
         _movement.StopMove();
-        PlayerDataHelper.SetScore(_scoreCounter.score);
+        _scoreCounter.CheckForRecord();
 
         PlayerDead?.Invoke();
         Debug.Log("Player dead");
 
-        AnalyticsHelper.OnPlayerDead(score, reason);
-    }
-
-    public SkinType GetSkin()
-    {
-        return _currentSkin;
+        AnalyticsHelper.OnPlayerDead(_scoreCounter.score, reason);
     }
 }

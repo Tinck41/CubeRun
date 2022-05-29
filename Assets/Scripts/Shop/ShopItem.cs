@@ -17,12 +17,14 @@ public class ShopItem : MonoBehaviour
 
     private void Start()
     {
+        _isBought = SaveLoadManager.playerData.avaliableSkins.Contains(_skinType);
+
         UpdateButton();
     }
 
     private bool CanBuy()
     {
-        if (PlayerDataHelper.GetCoins() > _cost)
+        if (SaveLoadManager.playerData.coins >= _cost)
         {
             return true;
         }
@@ -34,7 +36,11 @@ public class ShopItem : MonoBehaviour
     {
         if (CanBuy())
         {
-            PlayerDataHelper.AddCoins(-_cost);
+            SaveLoadManager.playerData.coins -= _cost;
+            SaveLoadManager.playerData.avaliableSkins.Add(_skinType);
+
+            GameManager.instance.topHUD.SetCoinsValue(SaveLoadManager.playerData.coins);
+
             _isBought = true;
             UpdateButton();
         }
@@ -42,7 +48,7 @@ public class ShopItem : MonoBehaviour
 
     public void Equip()
     {
-        GameManager.instance.GetPlayer().SetSkin(_skinType);
+        GameManager.instance.GetPlayer().skinManager.SetSkin(_skinType);
     }
 
     public void UpdateButton()

@@ -18,25 +18,24 @@ public class TopHUD : MonoBehaviour
     public void Start()
     {
         Reload();
-
-        PlayerDataHelper.CoinsChanged += OnCoinsChanged;
-        PlayerDataHelper.RecordChanged += OnRecordChanged;
     }
 
-    private void OnRecordChanged(int value)
+    public void SetRecordValue(int value)
     {
         _scoreText.text = "Best: " + value.ToString();
     }
 
-    private void OnCoinsChanged(int value)
+    public void SetCoinsValue(int value)
     {
-        _coinsText.text = PlayerDataHelper.GetCoins().ToString();
+        _coinsText.text = value.ToString();
     }
 
     public void Reload()
     {
-        _scoreText.text = "Best: " + PlayerDataHelper.GetRecord().ToString();
-        _coinsText.text = PlayerDataHelper.GetCoins().ToString();
+        var data = SaveLoadManager.playerData;
+
+        _scoreText.text = "Best: " + data.record.ToString();
+        _coinsText.text = data.coins.ToString();
     }
 
     public void SetBarEnabled(BarType bar, bool value)
