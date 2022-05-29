@@ -23,6 +23,15 @@ public class ScoreCounter : MonoBehaviour
         score += value;
 
         _scoreText.text = score.ToString();
-        PlayerDataHelper.AddScore(value);
+    }
+
+    public void CheckForRecord()
+    {
+        if (SaveLoadManager.playerData.record < score)
+        {
+            SaveLoadManager.playerData.record = score;
+
+            GameManager.instance.topHUD.SetRecordValue(score);
+        }
     }
 }

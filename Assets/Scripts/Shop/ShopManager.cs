@@ -16,7 +16,7 @@ public class ShopManager : MonoBehaviour
 
     public void Init()
     {
-        var skinType = GameManager.instance.GetPlayer().GetSkin();
+        var skinType = SaveLoadManager.playerData.selectedSkin;
         _selectedItemHolder.SetSkin(skinType);
         _headerText.text = "skin." + skinType.ToString() + ".name";
         UpdateBuyButtons();

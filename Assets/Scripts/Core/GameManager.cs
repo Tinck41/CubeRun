@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        SaveLoadManager.Load();
     }
 
     void Start()
@@ -54,5 +56,15 @@ public class GameManager : MonoBehaviour
     public Player GetPlayer()
     {
         return _player;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveLoadManager.Save();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        SaveLoadManager.Save();
     }
 }
