@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.Localization.Settings;
 using TMPro;
+using DG.Tweening;
 
 public enum BarType
 {
@@ -15,6 +15,12 @@ public class TopHUD : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _scoreText;
     [SerializeField] private TextMeshProUGUI _coinsText;
+    [SerializeField] private TextMeshProUGUI _rewardText;
+
+    [SerializeField] private Transform _rewardTextStartPosition;
+    [SerializeField] private Transform _rewardTextEndPosition;
+
+    [SerializeField] private float _rewardShowTime;
 
     public void Start()
     {
@@ -62,5 +68,27 @@ public class TopHUD : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void AddDailyReward(int value)
+    {
+        SaveLoadManager.playerData.coins += value;
+        SetCoinsValue(SaveLoadManager.playerData.coins);
+
+        _rewardText.gameObject.transform.position = _rewardTextStartPosition.position;
+        _rewardText.gameObject.SetActive(true);
+
+        _rewardText.text = "+" + value.ToString();
+        
+        _rewardText.gameObject.transform.DOMoveY(_rewardTextEndPosition.position.y, _rewardShowTime)
+            .OnComplete(() => _rewardText.gameObject.SetActive(false));
+
+        Sequence sequence = DOTween.Sequence(_rewardText);
+        sequence.Append(_rewardText.transform.DOMoveY(_rewardTextEndPosition.position.y, _rewardShowTime));
+        sequence.Join(_rewardText.DOFade(0, _rewardShowTime));
+        sequence.OnComplete(() => {
+            _rewardText.gameObject.SetActive(false);
+            _rewardText.color = Color.black;
+        });
     }
 }
