@@ -62,4 +62,9 @@ public class GameManager : MonoBehaviour
     {
         SaveLoadManager.Save();
     }
+
+    private void OnApplicationPause(bool pause)
+    {
+        SaveLoadManager.Save();
+    }
 }
