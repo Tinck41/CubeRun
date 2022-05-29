@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using TMPro;
 
 public enum BarType
@@ -22,7 +23,7 @@ public class TopHUD : MonoBehaviour
 
     public void SetRecordValue(int value)
     {
-        _scoreText.text = "Best: " + value.ToString();
+        _scoreText.text = LocaleHelper.GetString("UI.TopHud.Record") + value.ToString();
     }
 
     public void SetCoinsValue(int value)
@@ -34,7 +35,7 @@ public class TopHUD : MonoBehaviour
     {
         var data = SaveLoadManager.playerData;
 
-        _scoreText.text = "Best: " + data.record.ToString();
+        _scoreText.text = LocaleHelper.GetString("UI.TopHud.Record") + data.record.ToString();
         _coinsText.text = data.coins.ToString();
     }
 
