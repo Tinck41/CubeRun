@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Text Locale Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Text Locale
+  m_TableCollectionNameGuidString: d98e77f2fd718cf42be66dfe4c1cd7cb
+  m_Entries:
+  - m_Id: 151805419520
+    m_Key: UI.PlayTapZone.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1812582031360
+    m_Key: UI.ButtonPanel.Button.Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1891783073792
+    m_Key: UI.ButtonPanel.Button.Ad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1907515908096
+    m_Key: UI.ButtonPanel.Button.Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960410275840
+    m_Key: UI.ButtonPanel.Button.DailyReward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294674669568
+    m_Key: UI.TopHud.Record
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4649756057600
+    m_Key: UI.Shop.Item.Button.Equip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4824331378688
+    m_Key: UI.Shop.Item.Button.Equiped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20729962618880
+    m_Key: UI.GameOverWindow.Header.text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21248974184448
+    m_Key: UI.GameOverWindow.Button.Play.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21365907185664
+    m_Key: UI.GameOverWindow.Button.Continue.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21385427476480
+    m_Key: UI.GameOverWindow.Button.Home.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22397034881024
+    m_Key: UI.GamePauseWindow.Header.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22574130978816
+    m_Key: UI.GamePauseWindow.Button.Continue.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22667324219392
+    m_Key: UI.GamePauseWindow.Button.Home.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23961808068608
+    m_Key: UI.SettingsWindow.Button.Sound.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24068121092096
+    m_Key: UI.SettingsWindow.Button.Music.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24122701570048
+    m_Key: UI.SettingsWindow.Header.Text
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3181974118196838442
+  references:
+    version: 2
+    RefIds:
+    - rid: 3181974118196838442
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1653805963363

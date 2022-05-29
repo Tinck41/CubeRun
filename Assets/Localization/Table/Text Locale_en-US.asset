@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Text Locale_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: d98e77f2fd718cf42be66dfe4c1cd7cb, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 151805419520
+    m_Localized: Tap To Play!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1812582031360
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1891783073792
+    m_Localized: Watch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1907515908096
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960410275840
+    m_Localized: Reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4294674669568
+    m_Localized: 'Best: '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20729962618880
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4649756057600
+    m_Localized: Equip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4824331378688
+    m_Localized: Equiped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21248974184448
+    m_Localized: Play again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21365907185664
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21385427476480
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22397034881024
+    m_Localized: Game Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22574130978816
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22667324219392
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23961808068608
+    m_Localized: Sounds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24068121092096
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24122701570048
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

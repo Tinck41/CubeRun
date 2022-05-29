@@ -18,7 +18,7 @@ public class ShopManager : MonoBehaviour
     {
         var skinType = SaveLoadManager.playerData.selectedSkin;
         _selectedItemHolder.SetSkin(skinType);
-        _headerText.text = "skin." + skinType.ToString() + ".name";
+        _headerText.text = LocaleHelper.GetString($"skin.{skinType}.name");
         UpdateBuyButtons();
     }
 

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,6 +7,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private int _cost;
     [SerializeField] private bool _isBought;
 
+    [SerializeField] private TextMeshProUGUI _itemNameText;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _buyButton;
 
@@ -18,6 +18,7 @@ public class ShopItem : MonoBehaviour
     private void Start()
     {
         _isBought = SaveLoadManager.playerData.avaliableSkins.Contains(_skinType);
+        _itemNameText.text = LocaleHelper.GetString($"skin.{_skinType}.name");
 
         UpdateButton();
     }
@@ -49,6 +50,7 @@ public class ShopItem : MonoBehaviour
     public void Equip()
     {
         GameManager.instance.GetPlayer().skinManager.SetSkin(_skinType);
+        UpdateButton();
     }
 
     public void UpdateButton()
@@ -61,10 +63,18 @@ public class ShopItem : MonoBehaviour
 
         if (_isBought)
         {
-            _buyButton.interactable = true;
             _buyButton.onClick.RemoveListener(Buy);
             _buyButton.onClick.AddListener(Equip);
-            _costText.text = "Equip";
+            if (SaveLoadManager.playerData.selectedSkin == _skinType)
+            {
+                _buyButton.interactable = false;
+                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equiped");
+            }
+            else
+            {
+                _buyButton.interactable = true;
+                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equip");
+            }
         }
         else
         {
