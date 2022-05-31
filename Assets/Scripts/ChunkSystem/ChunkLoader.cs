@@ -8,19 +8,13 @@ public class ChunkLoader : MonoBehaviour
     [SerializeField] private GameObject _chunkPrefab;
     [SerializeField] private GameObject _player;
 
-    [SerializeField] private Vector2Int _chunkSize;
-
     [SerializeField] private int _poolRange;
-    [SerializeField] private int _pathNum;
 
     [SerializeField] private float _checkOffSet;
 
-    //[SerializeField] private int _seed;
-    [Range(0, 1)]
-    [SerializeField] private float _obstaclePercent;
-
     private Queue<GameObject> _pool;
 
+    private Vector2Int _chunkSize;
 
     void Start()
     {
@@ -43,7 +37,7 @@ public class ChunkLoader : MonoBehaviour
 
     void Update()
     {
-        if (_player.transform.position.z > _pool.Peek().transform.position.z + _chunkSize.y + _checkOffSet)
+        if (_player.transform.position.z > _pool.Peek().transform.position.z + _chunkSize.y * 2 + _checkOffSet)
         {
             Destroy(_pool.Dequeue());
 
@@ -64,11 +58,15 @@ public class ChunkLoader : MonoBehaviour
             throw new UnassignedReferenceException();
         }
 
-        var chunkPosition = _pool.FirstOrDefault() == null ? Vector3.zero : _pool.Last().transform.position + new Vector3(0, 0, _chunkSize.y / 2 * Mathf.Sqrt(2));
+        var chunkPosition = _pool.FirstOrDefault() == null ? Vector3.zero : _pool.Last().transform.position + new Vector3(0, 0, _chunkSize.y * Mathf.Sqrt(2));
         var newChunk = Instantiate(_chunkPrefab, Vector3.zero, _chunkPrefab.GetComponent<Transform>().rotation);
         if (newChunk)
         {
-            newChunk.GetComponent<ChunkGenerator>().GenerateGrid(_chunkSize, _pathNum, _obstaclePercent);
+            var chunkGenerator = newChunk.GetComponent<ChunkGenerator>();
+            chunkGenerator.firstChunk = _pool.Count < 1;
+            chunkGenerator.Intialize();
+            chunkGenerator.SetPathStartCorrd(_pool.Count > 0 ? _pool.Peek().GetComponent<ChunkGenerator>().GetPathEndCoord() : new List<ChunkGenerator.Coord>());
+            chunkGenerator.GenerateChunk();
             newChunk.transform.position = chunkPosition;
             newChunk.GetComponent<ChunkGenerator>().AlignGrid();
             newChunk.transform.SetParent(transform);
@@ -92,6 +90,12 @@ public class ChunkLoader : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             DestroyImmediate(transform.GetChild(0).gameObject);
+        }
+
+        var chunkGenerator = _chunkPrefab.GetComponent<ChunkGenerator>();
+        if (chunkGenerator != null)
+        {
+            _chunkSize = chunkGenerator.GetSize();
         }
 
         Load();
