@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8306618729129622740}
   - component: {fileID: 8535952738435019401}
   - component: {fileID: 157890762262542913}
-  - component: {fileID: 407838032628301171}
   - component: {fileID: 8892260411067222728}
-  m_Layer: 0
+  - component: {fileID: 3964192649761921477}
+  - component: {fileID: -4255012937196766874}
+  m_Layer: 7
   m_Name: Obstacle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,20 +100,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &407838032628301171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297752818420528432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f5db684893943940b07ef99f75e4740, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _height: 3
-  _speed: 1
 --- !u!114 &8892260411067222728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +112,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da44aa5365b8104f942e6dc2c74594f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 2
+  occupiedDir: 
+--- !u!114 &3964192649761921477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297752818420528432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda35a2e35f954449867e91a64ae628a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ascendHeight: 3
+  _ascendDuration: 1
+  _descendDuration: 0.3
+  _ascendRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &-4255012937196766874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297752818420528432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d86c3e5ed723d4468796709236df494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0.1
