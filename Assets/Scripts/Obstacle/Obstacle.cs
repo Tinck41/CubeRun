@@ -1,7 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
+
+public enum ObstacleType
+{
+    UNDEFINED = 0,
+    STATIC,
+    FLOATING,
+    HUMMNER,
+    DOUBLE_HUMMER
+}
 
 public class Obstacle : MonoBehaviour
 {
+    public ObstacleType type;
+
+    public List<Direction> occupiedDir;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
