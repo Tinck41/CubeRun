@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8ac42ea673add4c9ccb537527aa7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tile: {fileID: 3683460457115871221, guid: 2280de3678913e2489738f0538ab83b4, type: 3}
+  _tile: {fileID: 4517337645800332686, guid: 462b80ee5f00c17488b002766b2aebe8, type: 3}
   _coin: {fileID: 1043854923615808892, guid: 235df9f2b6b56f545870a1af5c46054c, type: 3}
   _obstacles:
   - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
