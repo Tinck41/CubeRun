@@ -49,7 +49,7 @@ MonoBehaviour:
   _coin: {fileID: 1043854923615808892, guid: 235df9f2b6b56f545870a1af5c46054c, type: 3}
   _obstacles:
   - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
-  - {fileID: 1297752818420528432, guid: 6d900d041a6c83f40a4259c69e8b0b32, type: 3}
+  - {fileID: 6057653881974035321, guid: 8fb0bed85d5408c4b9b6bb8b9824fb42, type: 3}
   - {fileID: 3696964650978776936, guid: 776e226048d29404dbab62ba67f2625c, type: 3}
   - {fileID: 4388370575650763048, guid: 94fe9d79afb4db243b7438d740b51989, type: 3}
   _size: {x: 7, y: 12}
