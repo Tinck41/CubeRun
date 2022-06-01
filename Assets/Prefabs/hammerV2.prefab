@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bdc0b1173d9af340b616d662db6d284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationAngle: 90
+  _directionNum: 3
 --- !u!1 &6974075303541688047
 GameObject:
   m_ObjectHideFlags: 0

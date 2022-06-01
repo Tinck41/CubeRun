@@ -48,7 +48,7 @@ MonoBehaviour:
   _tile: {fileID: 4517337645800332686, guid: 462b80ee5f00c17488b002766b2aebe8, type: 3}
   _coin: {fileID: 1043854923615808892, guid: 235df9f2b6b56f545870a1af5c46054c, type: 3}
   _obstacles:
-  - {fileID: 8578679641600985770, guid: a67dde1b01bfab24ea814c65a785c425, type: 3}
+  - {fileID: 1302506921115990739, guid: 17e7b04901a66c248876cc4e7bc570aa, type: 3}
   - {fileID: 6057653881974035321, guid: 8fb0bed85d5408c4b9b6bb8b9824fb42, type: 3}
   - {fileID: 1504201033288989614, guid: 3c9b43f3be5e2f445bfa4e97fbfab096, type: 3}
   - {fileID: 4388370575650763048, guid: 94fe9d79afb4db243b7438d740b51989, type: 3}
