@@ -248,7 +248,7 @@ public class ChunkGenerator : MonoBehaviour
                     }
 
                     // Spawning
-                    var obstacle = Instantiate(_obstacles[obstacleId], obstaclePosition + Vector3.up * 1, transform.rotation);
+                    var obstacle = Instantiate(_obstacles[obstacleId], _obstacles[obstacleId].transform.position + obstaclePosition + Vector3.up * 1, transform.rotation);
                     obstacle.transform.SetParent(_gridHolder.transform);
                 }
             }
