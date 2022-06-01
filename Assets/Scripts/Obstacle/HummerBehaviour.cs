@@ -14,7 +14,7 @@ public class HummerBehaviour : MonoBehaviour
         var animationSequence = DOTween.Sequence();
         var initialRotation = transform.rotation.eulerAngles;
 
-        animationSequence.Append(transform.DORotate(new Vector3(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z), _fallDuration));
+        animationSequence.Append(transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0), _fallDuration));
         animationSequence.AppendInterval(_waitDuration);
         animationSequence.Append(transform.DORotate(initialRotation, _raiseDuration));
         animationSequence.SetLoops(-1);

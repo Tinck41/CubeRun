@@ -10,6 +10,7 @@ public enum ObstacleType
     DOUBLE_HUMMER
 }
 
+[RequireComponent(typeof(SpawnChance))]
 public class Obstacle : MonoBehaviour
 {
     public ObstacleType type;
