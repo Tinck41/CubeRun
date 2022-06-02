@@ -239,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5936393374971784381}
   - component: {fileID: 2445344880689287277}
+  - component: {fileID: 3353952735231837366}
   m_Layer: 7
   m_Name: Anvil Sound
   m_TagString: Untagged
@@ -357,3 +358,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3353952735231837366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015473777484949775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5aca9e9792c22a43971492529adafe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

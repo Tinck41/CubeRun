@@ -1,9 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SettingsWindow : MonoBehaviour
 {
     [SerializeField] private ChangeIconButton _musicIcon;
     [SerializeField] private ChangeIconButton _soundsIcon;
+
+    public static event ToggleSound toggleSound;
+    public delegate void ToggleSound();
+
+    public static event ToggleMusic toggleMusic;
+    public delegate void ToggleMusic();
 
     private void Start()
     {
@@ -24,10 +31,12 @@ public class SettingsWindow : MonoBehaviour
     public void OnSoundsButtonClick()
     {
         SaveLoadManager.settingsData.soundEnabled = !SaveLoadManager.settingsData.soundEnabled;
+        toggleSound();
     }
 
     public void OnMusicButtonClick()
     {
         SaveLoadManager.settingsData.musicEnabled = !SaveLoadManager.settingsData.musicEnabled;
+        toggleMusic();
     }
 }
