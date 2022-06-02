@@ -4850,6 +4850,7 @@ GameObject:
   - component: {fileID: 115539797}
   - component: {fileID: 115539799}
   - component: {fileID: 115539798}
+  - component: {fileID: 115539800}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -5001,6 +5002,18 @@ MonoBehaviour:
   _showAdButton: {fileID: 115539797}
   _androidAdUnitId: Rewarded_Android
   _iOSAdUnitId: Rewarded_iOS
+--- !u!225 &115539800
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115539793}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &116779432
 GameObject:
   m_ObjectHideFlags: 0
@@ -11086,7 +11099,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c37caee621b70c4089f0bde2ea4b114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _score: {fileID: 2032388387}
+  _scoreText: {fileID: 2032388387}
+  _scorePanel: {fileID: 1418199516}
+  _playAgainButton: {fileID: 454452854}
+  _adButton: {fileID: 115539793}
+  _homeButton: {fileID: 1403338362}
+  _window: {fileID: 348523490}
+  _scoreSpeed: 1.5
+  _fadeSpeed: 0.5
 --- !u!114 &268265647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18694,6 +18714,7 @@ GameObject:
   - component: {fileID: 454452857}
   - component: {fileID: 454452856}
   - component: {fileID: 454452858}
+  - component: {fileID: 454452859}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -18830,6 +18851,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &454452859
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454452854}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &463424318
 GameObject:
   m_ObjectHideFlags: 0
@@ -23724,7 +23757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 475, y: -148.15747}
+  m_AnchoredPosition: {x: 475, y: -148.15746}
   m_SizeDelta: {x: 950, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &603509947
@@ -56420,6 +56453,7 @@ GameObject:
   - component: {fileID: 1403338365}
   - component: {fileID: 1403338364}
   - component: {fileID: 1403338366}
+  - component: {fileID: 1403338367}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -56556,6 +56590,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &1403338367
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403338362}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1404237875
 GameObject:
   m_ObjectHideFlags: 0
@@ -57010,6 +57056,7 @@ GameObject:
   - component: {fileID: 1418199517}
   - component: {fileID: 1418199519}
   - component: {fileID: 1418199518}
+  - component: {fileID: 1418199520}
   m_Layer: 5
   m_Name: Record
   m_TagString: Untagged
@@ -57078,6 +57125,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418199516}
   m_CullTransparentMesh: 1
+--- !u!225 &1418199520
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1418199516}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1418539122
 GameObject:
   m_ObjectHideFlags: 0
@@ -79609,7 +79668,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91e7850bc2654554db0b6a07e2408b11, type: 2}
   m_sharedMaterial: {fileID: -1336261866035022889, guid: 91e7850bc2654554db0b6a07e2408b11,

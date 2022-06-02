@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GameOverState : GameState
 {
@@ -6,7 +7,7 @@ public class GameOverState : GameState
 
     public override void EnterState()
     {
-        UI?.SetActive(true);
+        StartCoroutine(Show());
         if (!watchAdButton.loaded)
         {
             watchAdButton?.LoadAd();
@@ -35,5 +36,15 @@ public class GameOverState : GameState
     {
         GameManager.instance.ReloadGame();
         GameManager.instance.SwitchState(GameManager.instance.GetComponent<MainMenuState>());
+    }
+
+    private IEnumerator Show()
+    {
+        yield return new WaitForSeconds(1);
+
+        UI?.SetActive(true);
+        UI.GetComponent<GameOverScreen>().Show();
+
+        yield return null;
     }
 }

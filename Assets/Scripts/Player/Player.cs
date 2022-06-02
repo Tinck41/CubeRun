@@ -56,6 +56,18 @@ public class Player : MonoBehaviour
         InputDetection.TapEvent -= OnTap;
     }
 
+    public int GetScroe()
+    {
+        var scoreCounter = GetComponent<ScoreCounter>();
+        if (scoreCounter != null)
+        {
+            return scoreCounter.score;
+        }
+
+        Debug.LogError("Score Counter is missing");
+        return 0;
+    }
+
     public void StartMoving()
     {
         _currentDirection = Vector2.right;
