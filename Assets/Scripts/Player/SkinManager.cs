@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public enum SkinType
 {
     UNDEFINED = 0,
-    ORANGE,
-    YELLOW
+    DEFAULT,
+    SKILLET,
+    FOUR_SQUARE
 }
 
 public class SkinManager : MonoBehaviour
@@ -30,6 +31,10 @@ public class SkinManager : MonoBehaviour
             _skins[Convert.ToInt32(type) - 1].SetActive(true);
 
             SaveLoadManager.playerData.selectedSkin = type;
+        }
+        else
+        {
+            Debug.LogError($"Can't set skin of type {type}");
         }
     }
 }

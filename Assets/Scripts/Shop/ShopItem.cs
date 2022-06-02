@@ -60,6 +60,23 @@ public class ShopItem : MonoBehaviour
         UpdateButton();
     }
 
+    private void Update()
+    {
+        if (_isBought)
+        {
+            if (SaveLoadManager.playerData.selectedSkin == _skinType)
+            {
+                _buyButton.interactable = false;
+                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equiped");
+            }
+            else
+            {
+                _buyButton.interactable = true;
+                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equip");
+            }
+        }
+    }
+
     public void UpdateButton()
     {
         if (_buyButton == null)
@@ -72,16 +89,6 @@ public class ShopItem : MonoBehaviour
         {
             _buyButton.onClick.RemoveListener(Buy);
             _buyButton.onClick.AddListener(Equip);
-            if (SaveLoadManager.playerData.selectedSkin == _skinType)
-            {
-                _buyButton.interactable = false;
-                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equiped");
-            }
-            else
-            {
-                _buyButton.interactable = true;
-                _costText.text = LocaleHelper.GetString("UI.Shop.Item.Button.Equip");
-            }
         }
         else
         {
