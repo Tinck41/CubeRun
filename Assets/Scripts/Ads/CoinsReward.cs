@@ -6,8 +6,10 @@ public class CoinsReward : MonoBehaviour, IReward
 
     public void AddReward()
     {
-        SaveLoadManager.playerData.coins += _value;
+        //SaveLoadManager.playerData.coins += _value;
 
-        GameManager.instance.topHUD.SetCoinsValue(SaveLoadManager.playerData.coins);
+        //GameManager.instance.topHUD.SetCoinsValue(SaveLoadManager.playerData.coins);
+
+        GameManager.instance.topHUD.AddDailyReward(_value);
     }
 }
