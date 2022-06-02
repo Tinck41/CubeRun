@@ -4,11 +4,13 @@ using UnityEngine;
 public class RollMovement : MonoBehaviour, IMovable
 {
     [SerializeField] private float _speed;
+    [SerializeField] private AudioSource _rollSound;
 
     private Vector3 _rotationPoint;
 
     private IGroundChecker _groundChecker;
     private ScoreCounter _scoreCounter;
+
 
     public void Start()
     {
@@ -54,6 +56,7 @@ public class RollMovement : MonoBehaviour, IMovable
         if (_rotationPoint != Vector3.zero)
         {
             _scoreCounter?.AddScore(1);
+            _rollSound.Play();
         }
 
         yield return StartCoroutine(Roll());

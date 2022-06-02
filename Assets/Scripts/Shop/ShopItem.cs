@@ -11,6 +11,9 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Button _buyButton;
 
+    [SerializeField] private AudioSource _clickSound;
+    [SerializeField] private AudioSource _toggleSound;
+
     [SerializeField] private SkinType _skinType;
 
     public bool isSelected { get; private set; }
@@ -35,6 +38,8 @@ public class ShopItem : MonoBehaviour
 
     public void Buy()
     {
+        _clickSound.Play();
+
         if (CanBuy())
         {
             SaveLoadManager.playerData.coins -= _cost;
@@ -49,6 +54,8 @@ public class ShopItem : MonoBehaviour
 
     public void Equip()
     {
+        _toggleSound.Play();
+
         GameManager.instance.GetPlayer().skinManager.SetSkin(_skinType);
         UpdateButton();
     }

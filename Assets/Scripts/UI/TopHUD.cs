@@ -20,6 +20,8 @@ public class TopHUD : MonoBehaviour
     [SerializeField] private Transform _rewardTextStartPosition;
     [SerializeField] private Transform _rewardTextEndPosition;
 
+    [SerializeField] private AudioSource _coinsSound;
+
     [SerializeField] private float _rewardShowTime;
 
     public void Start()
@@ -72,6 +74,8 @@ public class TopHUD : MonoBehaviour
 
     public void AddDailyReward(int value)
     {
+        _coinsSound.Play();
+
         SaveLoadManager.playerData.coins += value;
         SetCoinsValue(SaveLoadManager.playerData.coins);
 

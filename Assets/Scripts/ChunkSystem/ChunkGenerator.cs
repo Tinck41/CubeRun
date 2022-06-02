@@ -213,7 +213,6 @@ public class ChunkGenerator : MonoBehaviour
                     var neigboursCoord = new List<Coord>();
                     foreach (int direction in occupiedDir)
                     {
-                        Debug.Log(direction);
                         var neigbour = GetNeighbour(randomCoord, direction);
                         if (neigbour.x >= 0 && neigbour.x < _coordMarks.GetLength(1) &&
                         neigbour.y >= 0 && neigbour.y < _coordMarks.GetLength(0))
