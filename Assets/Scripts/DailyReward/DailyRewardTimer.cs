@@ -44,7 +44,7 @@ public class DailyRewardTimer : MonoBehaviour
 
     public void Claim()
     {
-        AnalyticsHelper.OnDailyRewardGet();
+        AnalyticsHelper.OnDailyRewardGet(_rewardValue);
         _lastTimeClicked = (ulong)DateTime.UtcNow.Ticks;
         PlayerPrefs.SetString("LastTimeClicked", _lastTimeClicked.ToString());
         _claimButton.interactable = false;
