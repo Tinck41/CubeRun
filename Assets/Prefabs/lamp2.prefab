@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7388212558960951257}
   - component: {fileID: 2819132213007747163}
   - component: {fileID: -5996480030222540186}
+  - component: {fileID: 4784138668364159339}
   m_Layer: 7
   m_Name: lamp2
   m_TagString: Untagged
@@ -127,6 +128,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.35, y: 1, z: 1.35}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4784138668364159339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388370575650763048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5256129156653698153
 GameObject:
   m_ObjectHideFlags: 0

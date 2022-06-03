@@ -11,6 +11,8 @@ public class RollMovement : MonoBehaviour, IMovable
     private IGroundChecker _groundChecker;
     private ScoreCounter _scoreCounter;
 
+    private bool _canRoll = false;
+
 
     public void Start()
     {
@@ -20,6 +22,7 @@ public class RollMovement : MonoBehaviour, IMovable
 
     public void StartMove()
     {
+        _canRoll = true;
         StartCoroutine(Roll());
     }
 
@@ -30,6 +33,7 @@ public class RollMovement : MonoBehaviour, IMovable
 
     public void StopMove()
     {
+        _canRoll = false;
         _rotationPoint = Quaternion.Euler(0, 45, 0) * Vector3.zero;
         StopAllCoroutines();
     }
@@ -40,7 +44,7 @@ public class RollMovement : MonoBehaviour, IMovable
         Vector3 rotationCenter = transform.position + _rotationPoint / 2 + Vector3.down / 2;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, _rotationPoint);
 
-        while (remainingAngle > 0)
+        while (remainingAngle > 0 && _canRoll)
         {
             float rotationAngle = Mathf.Min(Time.deltaTime * _speed, remainingAngle);
             transform.RotateAround(rotationCenter, rotationAxis, rotationAngle);
@@ -48,7 +52,7 @@ public class RollMovement : MonoBehaviour, IMovable
             yield return null;
         }
 
-        if (_groundChecker !=  null)
+        if (_groundChecker !=  null && _canRoll)
         {
             _groundChecker.IsOnGround();
         }
@@ -59,6 +63,7 @@ public class RollMovement : MonoBehaviour, IMovable
             _rollSound.Play();
         }
 
-        yield return StartCoroutine(Roll());
+        if (_canRoll)
+            yield return StartCoroutine(Roll());
     }
 }

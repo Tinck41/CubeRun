@@ -23,9 +23,11 @@ public class GameOverScreen : MonoBehaviour
 
         _scorePanel.GetComponent<CanvasGroup>().alpha = 0;
         _playAgainButton.GetComponent<CanvasGroup>().alpha = 0;
+        _playAgainButton.GetComponent<MultiImageButton>().interactable = false;
         _adButton.GetComponent<CanvasGroup>().alpha = 0;
-        _scorePanel.GetComponent<CanvasGroup>().alpha = 0;
+        _adButton.GetComponent<MultiImageButton>().interactable = false;
         _homeButton.GetComponent<CanvasGroup>().alpha = 0;
+        _homeButton.GetComponent<MultiImageButton>().interactable = false;
 
         _window.transform.localScale = Vector3.zero;
 
@@ -35,8 +37,8 @@ public class GameOverScreen : MonoBehaviour
         animationSequence.Append(_window.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutBounce));
         animationSequence.Append(_scorePanel.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed));
         animationSequence.Join(DOTween.To(() => currentScore, x => currentScore = x, _score, _scoreSpeed).OnUpdate(() => _scoreText.text = currentScore.ToString()));
-        animationSequence.Append(_playAgainButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed));
-        animationSequence.Append(_adButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed));
-        animationSequence.Append(_homeButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed));
+        animationSequence.Append(_playAgainButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed).OnComplete(() => _playAgainButton.GetComponent<MultiImageButton>().interactable = true));
+        animationSequence.Append(_adButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed).OnComplete(() => _adButton.GetComponent<MultiImageButton>().interactable = true));
+        animationSequence.Append(_homeButton.GetComponent<CanvasGroup>().DOFade(1, _fadeSpeed).OnComplete(() => _homeButton.GetComponent<MultiImageButton>().interactable = true));
     }
 }
