@@ -19,6 +19,8 @@ public class GameOverScreen : MonoBehaviour
 
     public void Show()
     {
+        _window.GetComponent<WindowBase>().ShowWindow();
+
         _score = GameManager.instance.GetPlayer().GetScroe();
 
         _scorePanel.GetComponent<CanvasGroup>().alpha = 0;

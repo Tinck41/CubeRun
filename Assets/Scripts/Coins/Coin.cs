@@ -14,6 +14,8 @@ public class Coin : MonoBehaviour
         var player = collision.gameObject.GetComponent<Player>();
         if (player != null && !_coinsAdded)
         {
+            AnalyticsHelper.OnCoinPickUp(_value);
+
             _coin.SetActive(false);
 
             _coinSound.Play();

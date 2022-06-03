@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _holder: {fileID: 8639967547001175305}
 --- !u!1 &2758857163992831420
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _holder: {fileID: 8639967547001175305}
 --- !u!1 &7725115989963921645
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +374,7 @@ GameObject:
   - component: {fileID: 8639967547001175307}
   - component: {fileID: 8639967547001175305}
   - component: {fileID: 8639967547001175304}
+  - component: {fileID: 2938503233182285490}
   m_Layer: 7
   m_Name: double hammer
   m_TagString: Untagged
@@ -486,3 +489,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0.9
+--- !u!114 &2938503233182285490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873847619036236237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holder: {fileID: 8639967547001175305}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SettingsWindow : MonoBehaviour
 {
@@ -31,12 +30,14 @@ public class SettingsWindow : MonoBehaviour
     public void OnSoundsButtonClick()
     {
         SaveLoadManager.settingsData.soundEnabled = !SaveLoadManager.settingsData.soundEnabled;
+        AnalyticsHelper.OnSoundsEnabled(SaveLoadManager.settingsData.soundEnabled);
         toggleSound();
     }
 
     public void OnMusicButtonClick()
     {
         SaveLoadManager.settingsData.musicEnabled = !SaveLoadManager.settingsData.musicEnabled;
+        AnalyticsHelper.OnMusicEnabled(SaveLoadManager.settingsData.musicEnabled);
         toggleMusic();
     }
 }
