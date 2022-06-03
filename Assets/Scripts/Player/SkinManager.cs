@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 public enum SkinType
 {
@@ -12,7 +11,7 @@ public enum SkinType
 
 public class SkinManager : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _skins;
+    [SerializeField] private Skin[] _skins;
 
     private void Start()
     {
@@ -25,16 +24,35 @@ public class SkinManager : MonoBehaviour
         {
             foreach(var skin in _skins)
             {
-                skin.SetActive(false);
+                skin.gameObject.SetActive(false);
             }
 
-            _skins[Convert.ToInt32(type) - 1].SetActive(true);
+            _skins[Convert.ToInt32(type) - 1].gameObject.SetActive(true);
 
             SaveLoadManager.playerData.selectedSkin = type;
         }
         else
         {
             Debug.LogError($"Can't set skin of type {type}");
+
+            foreach (var skin in _skins)
+            {
+                skin.gameObject.SetActive(false);
+            }
+
+            _skins[Convert.ToInt32(SkinType.DEFAULT) - 1].gameObject.SetActive(true);
+
+            SaveLoadManager.playerData.selectedSkin = SkinType.DEFAULT;
         }
+    }
+
+    public Skin GetSelectedSkin()
+    {
+        return _skins[Convert.ToInt32(SaveLoadManager.playerData.selectedSkin) - 1];
+    }
+
+    public void Reset()
+    {
+        GetSelectedSkin().Reset();
     }
 }

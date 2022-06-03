@@ -4,7 +4,7 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
-    public bool isDead { get; set; }
+    public bool isDead { get; private set; }
 
     public static event Action PlayerDead;
 
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     {
         _movement.StopMove();
         _scoreCounter.Reset();
+        skinManager.Reset();
 
         GetComponent<BoxCollider>().isTrigger = false;
         isDead = false;

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8616595548188171239}
   - component: {fileID: 4081142057871081757}
   - component: {fileID: -2345484517434983724}
+  - component: {fileID: 2229134013653390562}
   m_Layer: 7
   m_Name: hammerV2
   m_TagString: Untagged
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationAngle: 90
   _directionNum: 3
+--- !u!114 &2229134013653390562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504201033288989614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3478423591382152376
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +309,8 @@ GameObject:
   - component: {fileID: 3845685324118736255}
   - component: {fileID: 8333614064638108910}
   - component: {fileID: 8161816009438734262}
-  - component: {fileID: 6310582665967774435}
+  - component: {fileID: 1621403933161988585}
+  - component: {fileID: 6259282939288739961}
   m_Layer: 7
   m_Name: Cube.001
   m_TagString: Untagged
@@ -385,8 +399,20 @@ MonoBehaviour:
   _fallDuration: 0.25
   _waitDuration: 0.5
   _hammerSound: {fileID: 2034199244554952775}
---- !u!64 &6310582665967774435
-MeshCollider:
+--- !u!114 &1621403933161988585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974075303541688047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724fe0da434e2ea46bcf071335de9edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &6259282939288739961
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -395,7 +421,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4493585093827132993, guid: ba6095a206134764d827bfa0ada9316c, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.21514785, y: 1.4119617, z: 1.6322716}
+  m_Center: {x: -1.1602911, y: -2.3482182, z: 0.12983821}
