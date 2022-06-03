@@ -34538,6 +34538,7 @@ MonoBehaviour:
   _items:
   - {fileID: 712201160}
   - {fileID: 1943610606}
+  - {fileID: 757368435}
   _selectedItemHolder: {fileID: 1544574386}
   _headerText: {fileID: 1481058320}
 --- !u!1 &840909591
@@ -64109,7 +64110,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.46153846, y: 1}
+    m_SensorSize: {x: 0.4620853, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
