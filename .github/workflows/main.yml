@@ -29,6 +29,11 @@ jobs:
         with:
           versioning: Semantic
           targetPlatform: ${{ matrix.targetPlatform }}
+          androidKeystoreName: user.keystore
+          androidKeystoreBase64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          androidKeystorePass: ${{ secrets.KEYSTORE_PASS }}
+          androidKeyaliasName: ${{ secrets.KEY_ALIAS_NAME }}
+          androidKeyaliasPass: ${{ secrets.KEY_ALIAS_PASS }}
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
