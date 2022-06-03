@@ -15,7 +15,7 @@ public class GamePausedState : GameState
     public override void LeaveState()
     {
         UI.SetActive(false);
-        pauseWindow?.SetActive(false);
+        pauseWindow.SetActive(false);
         Time.timeScale = 1;
     }
 
