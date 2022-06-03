@@ -52,7 +52,7 @@ public class RollMovement : MonoBehaviour, IMovable
             yield return null;
         }
 
-        if (_groundChecker !=  null)
+        if (_groundChecker !=  null && _canRoll)
         {
             _groundChecker.IsOnGround();
         }
@@ -63,6 +63,7 @@ public class RollMovement : MonoBehaviour, IMovable
             _rollSound.Play();
         }
 
-        yield return StartCoroutine(Roll());
+        if (_canRoll)
+            yield return StartCoroutine(Roll());
     }
 }
