@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "289715959801",
+    "project_id": "cube-run-308c8",
+    "storage_bucket": "cube-run-308c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289715959801:android:8cbd19f7d197a240642f28",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.CubeRun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289715959801-n1j8oh6mjffjlk3omjgact3mbqmfrl8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.DefaultCompany.CubeRun",
+            "certificate_hash": "d6dd869158dc59ebf7efd6e3fa4059d5b4ff135c"
+          }
+        },
+        {
+          "client_id": "289715959801-7a9ajpqst5nokq6v598bsnc4iqt2gvka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG0oAFKSc4S6wpnJWSbhn2Bo1QgtvU_R0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289715959801-7a9ajpqst5nokq6v598bsnc4iqt2gvka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
