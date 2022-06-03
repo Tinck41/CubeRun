@@ -6,14 +6,15 @@ public class GamePausedState : GameState
     [SerializeField] private GameObject pauseWindow;
     public override void EnterState()
     {
-        UI?.SetActive(true);
-        pauseWindow?.SetActive(true);
+        UI.SetActive(true);
+        pauseWindow.SetActive(true);
+        pauseWindow.GetComponent<WindowBase>().ShowWindow();
         Time.timeScale = 0;
     }
 
     public override void LeaveState()
     {
-        UI?.SetActive(false);
+        UI.SetActive(false);
         pauseWindow?.SetActive(false);
         Time.timeScale = 1;
     }

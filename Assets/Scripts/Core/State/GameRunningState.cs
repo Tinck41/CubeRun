@@ -20,7 +20,7 @@ public class GameRunningState : GameState
 
     public override void EnterState()
     {
-        UI?.SetActive(true);
+        UI.SetActive(true);
         GameManager.instance.inputDetection.AllowDetection(true);
         GameManager.instance.topHUD.SetBarEnabled(BarType.COINS, true);
         GameManager.instance.topHUD.SetBarEnabled(BarType.RECORD, true);
@@ -28,7 +28,7 @@ public class GameRunningState : GameState
 
     public override void LeaveState()
     {
-        UI?.SetActive(false);
+        UI.SetActive(false);
         GameManager.instance.inputDetection.AllowDetection(false);
     }
 

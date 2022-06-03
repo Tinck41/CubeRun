@@ -5,7 +5,8 @@ public enum WindowType
     UNDEFINED = 0,
     SHOP_WINDOW,
     SETTING_WINDOW,
-    GAME_OVER_WINDOW
+    GAME_OVER_WINDOW,
+    PAUSE_WINDOW
 }
 
 public class WindowBase : MonoBehaviour
