@@ -4,11 +4,16 @@ public class CoinsReward : MonoBehaviour, IReward
 {
     [SerializeField] private int _value;
 
+    public RewardType type { get; set; }
+
+    private void Start()
+    {
+        type = RewardType.COIN;
+    }
+
     public void AddReward()
     {
-        //SaveLoadManager.playerData.coins += _value;
-
-        //GameManager.instance.topHUD.SetCoinsValue(SaveLoadManager.playerData.coins);
+        AnalyticsHelper.OnAdWatch(type, _value);
 
         GameManager.instance.topHUD.AddDailyReward(_value);
     }

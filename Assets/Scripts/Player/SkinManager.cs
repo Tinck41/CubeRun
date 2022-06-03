@@ -30,6 +30,8 @@ public class SkinManager : MonoBehaviour
             _skins[Convert.ToInt32(type) - 1].gameObject.SetActive(true);
 
             SaveLoadManager.playerData.selectedSkin = type;
+
+            AnalyticsHelper.OnSkinSet(type);
         }
         else
         {

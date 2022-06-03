@@ -49,6 +49,8 @@ public class ShopItem : MonoBehaviour
 
             _isBought = true;
             UpdateButton();
+
+            AnalyticsHelper.OnSkinBought(_skinType);
         }
     }
 
