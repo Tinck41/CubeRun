@@ -60,6 +60,8 @@ public class ShopItem : MonoBehaviour
 
         GameManager.instance.GetPlayer().skinManager.SetSkin(_skinType);
         UpdateButton();
+
+        AnalyticsHelper.OnSkinSet(_skinType);
     }
 
     private void Update()
