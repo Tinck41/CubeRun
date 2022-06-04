@@ -90,6 +90,14 @@ MonoBehaviour:
     m_Localized: Settings
     m_Metadata:
       m_Items: []
+  - m_Id: 2185148364677120
+    m_Localized: Free reward!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2185203423305728
+    m_Localized: Your free reward is ready! Don't forget to get it!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

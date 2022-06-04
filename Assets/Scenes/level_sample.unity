@@ -40705,7 +40705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0d39577d4045944b3b5b1ce0b55463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _msToWait: 86400000
+  _msToWait: 15000
   _rewardValue: 100
   _claimButton: {fileID: 1165943997}
   _taimerImage: {fileID: 1311796871}
@@ -63676,6 +63676,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608484054}
   m_Mesh: {fileID: -5495902117074765545, guid: de4b953b9b845de44831a86cf3505955, type: 3}
+--- !u!1 &1609792164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1609792166}
+  - component: {fileID: 1609792165}
+  m_Layer: 0
+  m_Name: NotificationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1609792165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609792164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6dd3dac34a00540af2761f7e19f915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1609792166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609792164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612824106
 GameObject:
   m_ObjectHideFlags: 0

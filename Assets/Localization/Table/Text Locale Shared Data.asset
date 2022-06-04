@@ -87,6 +87,14 @@ MonoBehaviour:
     m_Key: UI.SettingsWindow.Header.Text
     m_Metadata:
       m_Items: []
+  - m_Id: 2185148364677120
+    m_Key: Notification.RewardReady.Title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2185203423305728
+    m_Key: Notification.RewardReady.Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
