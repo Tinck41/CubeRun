@@ -45,11 +45,16 @@ public class DailyRewardTimer : MonoBehaviour
     public void Claim()
     {
         AnalyticsHelper.OnDailyRewardGet(_rewardValue);
+
         _lastTimeClicked = (ulong)DateTime.UtcNow.Ticks;
         PlayerPrefs.SetString("LastTimeClicked", _lastTimeClicked.ToString());
+
         _claimButton.interactable = false;
         _taimerImage.gameObject.SetActive(true);
+
         GameManager.instance.topHUD.AddDailyReward(_rewardValue);
+
+        NotificationManager.instance.RegisterRewardReadyNotification(_msToWait);
     }
 
     private bool Ready()
