@@ -10,7 +10,7 @@ public class GameOverState : GameState
         StartCoroutine(Show());
         if (!watchAdButton.loaded)
         {
-            watchAdButton?.LoadAd();
+            watchAdButton.LoadAd();
         }
         GameManager.instance.topHUD.SetBarEnabled(BarType.COINS, false);
         GameManager.instance.topHUD.SetBarEnabled(BarType.RECORD, false);
@@ -18,7 +18,7 @@ public class GameOverState : GameState
 
     public override void LeaveState()
     {
-        UI?.SetActive(false);
+        UI.SetActive(false);
     }
 
     public override void UpdateState()
