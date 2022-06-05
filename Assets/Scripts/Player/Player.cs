@@ -18,6 +18,22 @@ public class Player : MonoBehaviour
 
     private Quaternion _initialRotation;
 
+    public void Revive(Vector3 position)
+    {
+        transform.SetPositionAndRotation(position + Vector3.up, _initialRotation);
+        GetComponent<BoxCollider>().isTrigger = false;
+
+        skinManager.Reset();
+
+        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
+        vcam.Follow = transform;
+
+        isDead = false;
+
+        _currentDirection = Vector3.zero;
+        _movement.StartMove();
+    }
+
     public void Reload()
     {
         _movement.StopMove();

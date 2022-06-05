@@ -50,7 +50,7 @@ public class ChunkGenerator : MonoBehaviour
     [SerializeField] private bool _drawPath = false;
 
 
-    private List<GameObject> _spawnedObstacles;
+    private GameObject[,] _spawnedObstacles;
     private GameObject[,] _grid;
 
     private CoordMark[,] _coordMarks;
@@ -82,7 +82,8 @@ public class ChunkGenerator : MonoBehaviour
         _pathStartCoord = new List<Coord>();
         _pathEndCoord = new List<Coord>();
 
-        _spawnedObstacles = new List<GameObject>();
+        _grid = new GameObject[_size.y, _size.x + _size.x];
+        _spawnedObstacles = new GameObject[_size.y, _size.x + _size.x];
 
         _playerSpawnPosition = new Coord(6, 0);
 
@@ -103,8 +104,6 @@ public class ChunkGenerator : MonoBehaviour
 
     private void GenerateGround()
     {
-        _grid = new GameObject[_size.y, _size.x + _size.x];
-
         var tileHalfSize = _tileWidth / 2;
         for (int y = 0; y < _grid.GetLength(0); y++)
         {
@@ -255,7 +254,7 @@ public class ChunkGenerator : MonoBehaviour
                     // Spawning
                     var obstacle = Instantiate(_obstacles[obstacleId], _obstacles[obstacleId].transform.position + obstaclePosition + Vector3.up * 1, _obstacles[obstacleId].transform.rotation);
                     obstacle.transform.SetParent(_gridHolder.transform);
-                    _spawnedObstacles.Add(obstacle);
+                    _spawnedObstacles[randomCoord.y, randomCoord.x] = obstacle;
                 }
             }
             else
@@ -320,31 +319,49 @@ public class ChunkGenerator : MonoBehaviour
     public void ClearObstacles(GameObject player)
     {
         var playerPosition = _gridHolder.transform.InverseTransformPoint(player.transform.position);
-
-
         var pos = PositionToCoord(playerPosition);
-        Debug.Log(pos.x.ToString() + " " + pos.y.ToString());
 
-        //foreach (var obstacle in _spawnedObstacles)
-        //{
-        //    Destroy(obstacle);
-        //}
+        pos.x = Convert.ToInt32(Mathf.Floor(Convert.ToSingle(_size.x + _size.x - 1) / 2f));
+        if (pos.y >= _size.y - _clearLenght)
+        {
+            pos.y -= _size.y - pos.y;
+            Debug.Log("not good");
+        }
+        else if (pos.y <= _clearLenght)
+        {
+            pos.y += _clearLenght - pos.y;
+            Debug.Log("not good");
+        }
+        else
+        {
+            Debug.Log("very good");
+        }
 
-        //_spawnedObstacles.Clear();
+        for (int y = pos.y - _clearLenght; y < pos.y + _clearLenght; y++)
+        {
+            for (int x = 0; x < _spawnedObstacles.GetLength(1) - 1; x++)
+            {
+                if (_spawnedObstacles[y, x] == null) continue;
 
-        //var tileHalfSize = _tileWidth / 2;
-        //for (int y = 0; y < _grid.GetLength(0); y++)
-        //{
-        //    for (int x = 0; x < _grid.GetLength(1) - 1; x++)
-        //    {
-        //        if (_grid[y, x] != null) continue;
+                Destroy(_spawnedObstacles[y, x]);
+            }
+        }
 
-        //        var posOffSet = x % 2 == 0 ? 0 : tileHalfSize;
+        var tileHalfSize = _tileWidth / 2;
+        for (int y = pos.y - _clearLenght; y < pos.y + _clearLenght; y++)
+        {
+            for (int x = 0; x < _grid.GetLength(1) - 1; x++)
+            {
+                if (_grid[y, x] != null) continue;
 
-        //        _grid[y, x] = Instantiate(_tile, new Vector3(x * tileHalfSize, 0, y * _tileWidth + posOffSet), transform.rotation);
-        //        _grid[y, x].transform.SetParent(_gridHolder.transform);
-        //    }
-        //}
+                var posOffSet = x % 2 == 0 ? 0 : tileHalfSize;
+
+                _grid[y, x] = Instantiate(_tile, new Vector3(x * tileHalfSize - _size.x / 2 * Mathf.Sqrt(2), 0, y * _tileWidth + posOffSet), transform.rotation);
+                _grid[y, x].transform.SetParent(_gridHolder.transform);
+            }
+        }
+
+        GameManager.instance.GetPlayer().Revive(_gridHolder.transform.TransformPoint(CoordToPosition(pos.x, pos.y)));
     }
 
     public Vector3 CoordToPosition(int x, int y)
