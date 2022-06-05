@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         return _player;
     }
 
+    public ChunkLoader GetChunkLoader()
+    {
+        return _chunkLoader;
+    }
+
     private void OnApplicationQuit()
     {
         SaveLoadManager.Save();

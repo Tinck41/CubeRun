@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -77,6 +77,20 @@ public class ChunkLoader : MonoBehaviour
             Debug.LogError("No chunk prefab was created");
             throw new MissingReferenceException();
         }
+    }
+
+    public void ReloadPlatformForRevive()
+    {
+        GameObject chunkWithPlayer = new GameObject();
+        foreach (var chunk in _pool)
+        {
+            if (_player.transform.position.z >= chunk.transform.position.z - 0.05f)
+            {
+                chunkWithPlayer = chunk;
+            }
+        }
+
+        chunkWithPlayer.GetComponent<ChunkGenerator>().ClearObstacles(_player);
     }
 
     public void Reload()
