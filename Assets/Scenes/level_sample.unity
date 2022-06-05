@@ -40707,7 +40707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0d39577d4045944b3b5b1ce0b55463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _msToWait: 15000
+  _msToWait: 86400000
   _rewardValue: 100
   _claimButton: {fileID: 1165943997}
   _taimerImage: {fileID: 1311796871}

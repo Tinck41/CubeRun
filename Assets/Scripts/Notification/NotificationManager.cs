@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_ANDROID
 using Unity.Notifications.Android;
+#endif
 
 public class NotificationManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class NotificationManager : MonoBehaviour
     {
         instance = this;
 
+#if UNITY_ANDROID
         AndroidNotificationChannel channel = new AndroidNotificationChannel()
         {
             Id = "reward",
@@ -18,10 +21,12 @@ public class NotificationManager : MonoBehaviour
         };
 
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
+#endif
     }
 
     public void RegisterRewardReadyNotification(float fireTime)
     {
+#if UNITY_ANDROID
         AndroidNotification notification = new AndroidNotification();
 
         notification.Title = LocaleHelper.GetString("Notification.RewardReady.Title");
@@ -32,5 +37,6 @@ public class NotificationManager : MonoBehaviour
         notification.FireTime = System.DateTime.Now.AddMilliseconds(fireTime);
 
         AndroidNotificationCenter.SendNotification(notification, "reward");
+#endif
     }
 }
