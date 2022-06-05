@@ -40,6 +40,8 @@ public class ChunkGenerator : MonoBehaviour
     [SerializeField] private GameObject _coin;
     [SerializeField] private GameObject[] _obstacles;
 
+    [SerializeField] private int  _clearLenght;
+
     [SerializeField] private Vector2Int  _size;
 
     [Range(0f, 1f)]
@@ -47,6 +49,8 @@ public class ChunkGenerator : MonoBehaviour
 
     [SerializeField] private bool _drawPath = false;
 
+
+    private List<GameObject> _spawnedObstacles;
     private GameObject[,] _grid;
 
     private CoordMark[,] _coordMarks;
@@ -77,6 +81,8 @@ public class ChunkGenerator : MonoBehaviour
         _pathTileCoords = new List<Coord>();
         _pathStartCoord = new List<Coord>();
         _pathEndCoord = new List<Coord>();
+
+        _spawnedObstacles = new List<GameObject>();
 
         _playerSpawnPosition = new Coord(6, 0);
 
@@ -249,6 +255,7 @@ public class ChunkGenerator : MonoBehaviour
                     // Spawning
                     var obstacle = Instantiate(_obstacles[obstacleId], _obstacles[obstacleId].transform.position + obstaclePosition + Vector3.up * 1, _obstacles[obstacleId].transform.rotation);
                     obstacle.transform.SetParent(_gridHolder.transform);
+                    _spawnedObstacles.Add(obstacle);
                 }
             }
             else
@@ -310,12 +317,50 @@ public class ChunkGenerator : MonoBehaviour
         }
     }
 
+    public void ClearObstacles(GameObject player)
+    {
+        var playerPosition = _gridHolder.transform.InverseTransformPoint(player.transform.position);
+
+
+        var pos = PositionToCoord(playerPosition);
+        Debug.Log(pos.x.ToString() + " " + pos.y.ToString());
+
+        //foreach (var obstacle in _spawnedObstacles)
+        //{
+        //    Destroy(obstacle);
+        //}
+
+        //_spawnedObstacles.Clear();
+
+        //var tileHalfSize = _tileWidth / 2;
+        //for (int y = 0; y < _grid.GetLength(0); y++)
+        //{
+        //    for (int x = 0; x < _grid.GetLength(1) - 1; x++)
+        //    {
+        //        if (_grid[y, x] != null) continue;
+
+        //        var posOffSet = x % 2 == 0 ? 0 : tileHalfSize;
+
+        //        _grid[y, x] = Instantiate(_tile, new Vector3(x * tileHalfSize, 0, y * _tileWidth + posOffSet), transform.rotation);
+        //        _grid[y, x].transform.SetParent(_gridHolder.transform);
+        //    }
+        //}
+    }
+
     public Vector3 CoordToPosition(int x, int y)
     {
         var tileHalfSize = _tileWidth / 2;
         var posOffSet = x % 2 == 0 ? 0 : tileHalfSize;
 
         return new Vector3(x * tileHalfSize, 0, y * _tileWidth + posOffSet);
+    }
+
+    public Coord PositionToCoord(Vector3 position)
+    {
+        var tileHalfSize = _tileWidth / 2;
+        var posOffSet = Mathf.Round(position.z / tileHalfSize) % 2 == 0 ? 0 : tileHalfSize;
+
+        return new Coord(Convert.ToInt32(position.x / tileHalfSize), Convert.ToInt32(position.z / _tileWidth - posOffSet));
     }
 
     public Coord GetRandomCoord()

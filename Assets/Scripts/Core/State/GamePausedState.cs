@@ -29,6 +29,11 @@ public class GamePausedState : GameState
         GameManager.instance.SwitchState(GameManager.instance.GetComponent<GameRunningState>());
     }
 
+    public void OnReviveButtonClick()
+    {
+
+    }
+
     public void OnHomeButtonClick()
     {
         GameManager.instance.ReloadGame();
