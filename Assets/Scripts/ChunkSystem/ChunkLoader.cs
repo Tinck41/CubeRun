@@ -65,7 +65,7 @@ public class ChunkLoader : MonoBehaviour
             var chunkGenerator = newChunk.GetComponent<ChunkGenerator>();
             chunkGenerator.firstChunk = _pool.Count < 1;
             chunkGenerator.Intialize();
-            chunkGenerator.SetPathStartCorrd(_pool.Count > 0 ? _pool.Peek().GetComponent<ChunkGenerator>().GetPathEndCoord() : new List<ChunkGenerator.Coord>());
+            chunkGenerator.SetPathStartCorrd(_pool.Count > 0 ? _pool.Last().GetComponent<ChunkGenerator>().GetPathEndCoord() : new List<ChunkGenerator.Coord>());
             chunkGenerator.GenerateChunk();
             newChunk.transform.position = chunkPosition;
             newChunk.GetComponent<ChunkGenerator>().AlignGrid();
