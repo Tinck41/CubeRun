@@ -98,6 +98,18 @@ MonoBehaviour:
     m_Localized: Your free reward is ready! Don't forget to get it!
     m_Metadata:
       m_Items: []
+  - m_Id: 2523458748473344
+    m_Localized: Hollow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2523405812162560
+    m_Localized: Golden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2523538465415168
+    m_Localized: Obsidian
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

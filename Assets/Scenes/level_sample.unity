@@ -4219,6 +4219,7 @@ MonoBehaviour:
   - {fileID: 1504201033288989614, guid: 3c9b43f3be5e2f445bfa4e97fbfab096, type: 3}
   - {fileID: 4388370575650763048, guid: 94fe9d79afb4db243b7438d740b51989, type: 3}
   - {fileID: 8873847619036236237, guid: 01086e42dc9c09f43be0e53e9e82962d, type: 3}
+  _clearLenght: 0
   _size: {x: 7, y: 12}
   _obstaclePercent: 0.6
   _drawPath: 0
@@ -10401,8 +10402,8 @@ MonoBehaviour:
   _adButton: {fileID: 115539793}
   _homeButton: {fileID: 1403338362}
   _window: {fileID: 348523490}
-  _scoreSpeed: 1
-  _fadeSpeed: 0.5
+  _scoreSpeed: 0.5
+  _fadeSpeed: 0.25
 --- !u!114 &268265647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11735,6 +11736,7 @@ MonoBehaviour:
   - {fileID: 1504201033288989614, guid: 3c9b43f3be5e2f445bfa4e97fbfab096, type: 3}
   - {fileID: 4388370575650763048, guid: 94fe9d79afb4db243b7438d740b51989, type: 3}
   - {fileID: 8873847619036236237, guid: 01086e42dc9c09f43be0e53e9e82962d, type: 3}
+  _clearLenght: 0
   _size: {x: 7, y: 12}
   _obstaclePercent: 0.6
   _drawPath: 0
@@ -45737,6 +45739,7 @@ MonoBehaviour:
   - {fileID: 1504201033288989614, guid: 3c9b43f3be5e2f445bfa4e97fbfab096, type: 3}
   - {fileID: 4388370575650763048, guid: 94fe9d79afb4db243b7438d740b51989, type: 3}
   - {fileID: 8873847619036236237, guid: 01086e42dc9c09f43be0e53e9e82962d, type: 3}
+  _clearLenght: 0
   _size: {x: 7, y: 12}
   _obstaclePercent: 0.6
   _drawPath: 0

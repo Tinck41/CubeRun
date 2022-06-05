@@ -95,6 +95,18 @@ MonoBehaviour:
     m_Key: Notification.RewardReady.Text
     m_Metadata:
       m_Items: []
+  - m_Id: 2523405812162560
+    m_Key: Skin.DEFAULT.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2523458748473344
+    m_Key: Skin.SKILLET.Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2523538465415168
+    m_Key: Skin.FOUR_SQUARE.Name
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

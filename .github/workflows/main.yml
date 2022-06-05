@@ -10,8 +10,6 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - StandaloneOSX
-          - StandaloneWindows64
           - Android
     steps:
       - uses: actions/checkout@v2

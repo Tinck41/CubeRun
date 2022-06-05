@@ -21,7 +21,7 @@ public class ShopItem : MonoBehaviour
     private void Start()
     {
         _isBought = SaveLoadManager.playerData.avaliableSkins.Contains(_skinType);
-        _itemNameText.text = LocaleHelper.GetString($"skin.{_skinType}.name");
+        _itemNameText.text = LocaleHelper.GetString($"Skin.{_skinType}.Name");
 
         UpdateButton();
     }
