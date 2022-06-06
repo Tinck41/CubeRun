@@ -32,4 +32,9 @@ public class CrashlyticsInit : MonoBehaviour
             }
         });
     }
+
+    public void TestCrash()
+    {
+        throw new System.Exception("Test Crash V3");
+    }
 }

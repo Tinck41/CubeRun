@@ -66469,7 +66469,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.4620853, y: 1}
+    m_SensorSize: {x: 0.46153846, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -67670,6 +67670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6c199c94fcecc4bb1051a5e68a9ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _virtualCamera: {fileID: 1617708131}
 --- !u!4 &1645920533
 Transform:
   m_ObjectHideFlags: 0
