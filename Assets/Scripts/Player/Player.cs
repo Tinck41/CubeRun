@@ -4,6 +4,8 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+
     public bool isDead { get; private set; }
 
     public static event Action PlayerDead;
@@ -25,8 +27,7 @@ public class Player : MonoBehaviour
 
         skinManager.Reset();
 
-        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
-        vcam.Follow = transform;
+        _virtualCamera.Follow = transform;
 
         isDead = false;
 
@@ -45,8 +46,7 @@ public class Player : MonoBehaviour
         transform.rotation = _initialRotation;
         transform.position = new Vector3(0, 1, 0);
 
-        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
-        vcam.Follow = transform;
+        _virtualCamera.Follow = transform;
 
         _currentDirection = Vector3.zero;
         _movement.StartMove();
@@ -117,8 +117,7 @@ public class Player : MonoBehaviour
 
         isDead = true;
 
-        var vcam = FindObjectOfType<CinemachineVirtualCamera>();
-        vcam.Follow = null;
+        _virtualCamera.Follow = null;
 
         _movement.StopMove();
         _scoreCounter.CheckForRecord();
