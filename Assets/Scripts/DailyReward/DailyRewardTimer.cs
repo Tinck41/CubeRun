@@ -14,7 +14,7 @@ public class DailyRewardTimer : MonoBehaviour
     private void Start()
     {
 
-        _lastTimeClicked = ulong.Parse(PlayerPrefs.GetString("LastTimeClicked"));
+        ulong.TryParse(PlayerPrefs.GetString("LastTimeClicked"), out _lastTimeClicked);
 
         if (!Ready())
         {

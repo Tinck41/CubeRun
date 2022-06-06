@@ -12,16 +12,28 @@ public class FloatingBehaviour : MonoBehaviour
 
     [SerializeField] private AudioSource _fallSound;
 
+    private Sequence sequence;
+    private Guid uid;
+
     public void Start()
     {
         var random = new System.Random(Guid.NewGuid().GetHashCode());
-        var animationSequence = DOTween.Sequence();
+        sequence = DOTween.Sequence();
 
-        animationSequence.PrependInterval(Convert.ToSingle(random.NextDouble()) * 5f);
-        animationSequence.Append(transform.DOMoveY(_ascendHeight, _ascendDuration));
-        animationSequence.Join(transform.DORotate(_ascendRotation + transform.rotation.eulerAngles, _ascendDuration));
-        animationSequence.AppendInterval(random.Next(1, 2));
-        animationSequence.Append(transform.DOMoveY(1, _descendDuration).OnComplete(() => _fallSound.Play()).SetEase(Ease.InExpo));
-        animationSequence.SetLoops(-1);
+        sequence.PrependInterval(Convert.ToSingle(random.NextDouble()) * 5f);
+        sequence.Append(transform.DOMoveY(_ascendHeight, _ascendDuration));
+        sequence.Join(transform.DORotate(_ascendRotation + transform.rotation.eulerAngles, _ascendDuration));
+        sequence.AppendInterval(random.Next(1, 2));
+        sequence.Append(transform.DOMoveY(1, _descendDuration).OnComplete(() => _fallSound.Play()).SetEase(Ease.InExpo));
+        sequence.SetLoops(-1);
+
+        uid = Guid.NewGuid();
+        sequence.id = uid;
+    }
+
+    private void OnDestroy()
+    {
+        DOTween.Kill(uid);
+        sequence = null;
     }
 }
