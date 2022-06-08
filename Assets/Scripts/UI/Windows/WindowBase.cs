@@ -6,7 +6,8 @@ public enum WindowType
     SHOP_WINDOW,
     SETTING_WINDOW,
     GAME_OVER_WINDOW,
-    PAUSE_WINDOW
+    PAUSE_WINDOW,
+    EXIT_WINDOW
 }
 
 public class WindowBase : MonoBehaviour

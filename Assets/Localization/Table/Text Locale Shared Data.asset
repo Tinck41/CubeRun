@@ -107,6 +107,18 @@ MonoBehaviour:
     m_Key: Skin.FOUR_SQUARE.Name
     m_Metadata:
       m_Items: []
+  - m_Id: 3585554928033792
+    m_Key: UI.ExitWindow.Header.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3585595294015488
+    m_Key: UI.ExitWindow.Button.Yes.Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3585639216766976
+    m_Key: UI.ExitWindow.Button.No.Text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

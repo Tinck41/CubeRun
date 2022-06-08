@@ -110,6 +110,18 @@ MonoBehaviour:
     m_Localized: Obsidian
     m_Metadata:
       m_Items: []
+  - m_Id: 3585554928033792
+    m_Localized: Quit?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3585595294015488
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3585639216766976
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
