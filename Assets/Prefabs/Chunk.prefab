@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 8873847619036236237, guid: 01086e42dc9c09f43be0e53e9e82962d, type: 3}
   _clearLenght: 3
   _size: {x: 7, y: 12}
-  _obstaclePercent: 0.6
+  _obstaclePercent: 0.15
   _drawPath: 0
 --- !u!65 &1152762490657576077
 BoxCollider:

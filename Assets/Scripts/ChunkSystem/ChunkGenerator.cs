@@ -67,6 +67,7 @@ public class ChunkGenerator : MonoBehaviour
     private GameObject _gridHolder;
 
     private float _tileWidth;
+    private float _cumulativeFrequency;
 
     public bool firstChunk { get; set; }
 
@@ -85,12 +86,19 @@ public class ChunkGenerator : MonoBehaviour
         _grid = new GameObject[_size.y, _size.x + _size.x];
         _spawnedObstacles = new GameObject[_size.y, _size.x + _size.x];
 
+        _coordMarks = new CoordMark[_size.y, _size.x + _size.x];
+
         _playerSpawnPosition = new Coord(6, 0);
 
         _tileWidth = _tile.transform.localScale.x * Mathf.Sqrt(2);
 
         _gridHolder = new GameObject("GridHolder");
         _gridHolder.transform.SetParent(transform);
+
+        foreach (var obstacle in _obstacles)
+        {
+            _cumulativeFrequency += obstacle.GetComponent<SpawnChance>().value;
+        }
     }
 
     public void GenerateChunk()
@@ -121,8 +129,6 @@ public class ChunkGenerator : MonoBehaviour
 
     private void SetInitialCoordMark()
     {
-        _coordMarks = new CoordMark[_size.y, _size.x + _size.x];
-
         for (int y = 0; y < _coordMarks.GetLength(0); y++)
         {
             _coordMarks[y, 0] = CoordMark.EDGE;
@@ -210,52 +216,50 @@ public class ChunkGenerator : MonoBehaviour
 
             if (random.NextDouble() > 0.05f)
             {
-                var obstacleId = random.Next(0, _obstacles.Length);
-                var occupiedDir = _obstacles[obstacleId].GetComponent<Obstacle>().occupiedDir;
-                var spwanChance = _obstacles[obstacleId].GetComponent<SpawnChance>().value;
-                if (random.NextDouble() <= spwanChance)
+                var randomObstacle = GetRandomObstacle();
+                var occupiedDir = randomObstacle.GetComponent<Obstacle>().occupiedDir;
+
+                var neigboursCoord = new List<Coord>();
+                foreach (int direction in occupiedDir)
                 {
-                    var neigboursCoord = new List<Coord>();
-                    foreach (int direction in occupiedDir)
+                    var neigbour = GetNeighbour(randomCoord, direction);
+                    if (neigbour.x >= 0 && neigbour.x < _coordMarks.GetLength(1) &&
+                    neigbour.y >= 0 && neigbour.y < _coordMarks.GetLength(0))
                     {
-                        var neigbour = GetNeighbour(randomCoord, direction);
-                        if (neigbour.x >= 0 && neigbour.x < _coordMarks.GetLength(1) &&
-                        neigbour.y >= 0 && neigbour.y < _coordMarks.GetLength(0))
-                        {
-                            neigboursCoord.Add(neigbour);
-                        }
+                        neigboursCoord.Add(neigbour);
                     }
-
-                    // Check whether neigbour occupied or not
-                    var occupied = false;
-                    foreach (var coord in neigboursCoord)
-                    {
-                        if (_coordMarks[coord.y, coord.x] != CoordMark.NONE)
-                        {
-                            occupied = true;
-                            break;
-                        }
-                    }
-
-                    // Can't continue in case one of the neighbours is occupied
-                    if (occupied)
-                    {
-                        i--;
-                        counter++;
-                        continue;
-                    }
-
-                    // Mark neigbours
-                    foreach (var coord in neigboursCoord)
-                    {
-                        _coordMarks[coord.y, coord.x] = CoordMark.OBSTACLE;
-                    }
-
-                    // Spawning
-                    var obstacle = Instantiate(_obstacles[obstacleId], _obstacles[obstacleId].transform.position + obstaclePosition + Vector3.up * 1, _obstacles[obstacleId].transform.rotation);
-                    obstacle.transform.SetParent(_gridHolder.transform);
-                    _spawnedObstacles[randomCoord.y, randomCoord.x] = obstacle;
                 }
+
+                // Check whether neigbour occupied or not
+                var occupied = false;
+                foreach (var coord in neigboursCoord)
+                {
+                    if (_coordMarks[coord.y, coord.x] != CoordMark.NONE)
+                    {
+                        occupied = true;
+                        break;
+                    }
+                }
+
+                // Can't continue in case one of the neighbours is occupied
+                if (occupied || neigboursCoord.Count < occupiedDir.Count)
+                {
+                    i--;
+                    counter++;
+                    continue;
+                }
+
+                // Mark neigbours
+                foreach (var coord in neigboursCoord)
+                {
+                    _coordMarks[coord.y, coord.x] = CoordMark.OBSTACLE;
+                }
+
+                // Spawning
+                var obstacle = Instantiate(randomObstacle, randomObstacle.transform.position + obstaclePosition + Vector3.up * 1, randomObstacle.transform.rotation);
+                obstacle.transform.SetParent(_gridHolder.transform);
+
+                _spawnedObstacles[randomCoord.y, randomCoord.x] = obstacle;
             }
             else
             {
@@ -263,6 +267,28 @@ public class ChunkGenerator : MonoBehaviour
                 _grid[randomCoord.y, randomCoord.x] = null;
             }
         }
+    }
+
+    private GameObject GetRandomObstacle()
+    {
+        float randomWeight = 0;
+        do
+        {
+            if (_cumulativeFrequency == 0)
+                return null;
+            randomWeight = UnityEngine.Random.Range(0, _cumulativeFrequency);
+        }
+        while (randomWeight == _cumulativeFrequency);
+
+        foreach (var obstacle in _obstacles)
+        {
+            var spawnChance = obstacle.GetComponent<SpawnChance>().value;
+            if (randomWeight < spawnChance)
+                return obstacle;
+            randomWeight -= spawnChance;
+        }
+
+        return null;
     }
 
     private Coord GetNeighbour(Coord position, int direction)

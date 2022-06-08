@@ -49,7 +49,7 @@ public class InputDetection : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
                 if (!_isTouching)
                 {
@@ -57,7 +57,7 @@ public class InputDetection : MonoBehaviour
                     _isTouching = true;
                 }
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space))
             {
                 _isTouching = false;
             }
